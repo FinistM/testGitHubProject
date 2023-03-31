@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/Service/service.service';
-import { Remont } from 'src/app/components/remont/Remont';
+import { Remont } from 'src/app/components/remonty/remont/Remont';
+import { Vid } from 'src/app/components/vidRemonta/vid/Vid';
+
 
 @Component({
   selector: 'app-add',
@@ -11,8 +14,16 @@ import { Remont } from 'src/app/components/remont/Remont';
 
 export class AddComponent implements OnInit{
 
-    remont!: Remont;
-    constructor(private router:Router, private service:ServiceService) {}
+
+  vidy!: Vid[];
+
+  constructor(private httpClient: HttpClient, private router:Router, private service:ServiceService) {
+    httpClient.get<Vid[]>("http://localhost:8081/vidy")
+    //httpClient.get<Vid[]>("http://192.168.7.111:8081/vidy")
+    .subscribe(result=>{
+      this.vidy = result;
+    })
+  }
 
   ngOnInit(){
   }

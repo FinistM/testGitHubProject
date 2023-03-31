@@ -14,7 +14,10 @@
           <label>Месторождение:</label>
           <input type="text" class="form-control" #mestorojdenie>
           <label>Вид ремонта:</label>
-          <input type="text" class="form-control" #vid_remonta>
+          <select class="form-control" #vid_remonta>
+            <option selected>
+            <option *ngFor="let vid of vidy">{{vid.name}}</option>
+          </select>
           <label>Причина:</label>
           <input type="text" class="form-control" #prichina>
           <label>Дата и время начала ремонта</label><br>

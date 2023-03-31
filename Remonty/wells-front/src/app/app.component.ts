@@ -11,11 +11,11 @@ export class AppComponent {
 
   constructor(private router:Router){this.router.navigate(["remontList"]);}
 
-   ShowList(){
+   ShowListRemontov(){
         this.router.navigate(["remontList"]);
    }
 
-   ShowAdd(){
-       this.router.navigate(["addForm"]);
+   ShowListVidov(){
+        this.router.navigate(["vidList"]);
    }
 }

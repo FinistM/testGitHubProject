@@ -1,0 +1,21 @@
+<title>Редактирование</title>
+<div class="container cil-md-6" style="padding: 40px" xmlns="http://www.w3.org/1999/html">
+  <div class="card" >
+    <div class="card-header">
+      <h3>Редактирование данных</h3>
+    </div>
+    <div style="padding: 10px; ">
+      <form>
+        <div class="form-group" >
+          <label>Скважина:</label>
+          <input [(ngModel)]="vid.name" name="name" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <button (click)="Actualisation(vid)" class="btn btn-info" style="background: #0275d8; border: 0px">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--(click)="Actualisation(remont)"-->

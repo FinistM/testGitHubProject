@@ -5,14 +5,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { RemontComponent } from './components/remont/remont.component';
-import { AddComponent } from './components/add/add.component';
-import { EditComponent } from './components/edit/edit.component';
+import { RemontComponent } from './components/remonty/remont/remont.component';
+import { AddComponent } from './components/remonty/add/add.component';
+import { EditComponent } from './components/remonty/edit/edit.component';
+import { VidComponent } from './components/vidRemonta/vid/vid.component';
+import { EditVidComponent } from './components/vidRemonta/edit-vid/edit-vid.component';
+import { AddVidComponent } from './components/vidRemonta/add-vid/add-vid.component';
 
 const appRoutes: Routes =[
-  {path: 'addForm', component: AddComponent},
-  {path: 'editForm', component: EditComponent},
-  {path: 'remontList', component: RemontComponent}
+  {path: 'addRemontForm', component: AddComponent},
+  {path: 'editRemontForm', component: EditComponent},
+  {path: 'remontList', component: RemontComponent},
+  {path: 'vidList', component: VidComponent},
+  {path: 'addVidForm', component: AddVidComponent},
+  {path: 'editVidForm', component: EditVidComponent}
 ];
 
 
@@ -21,7 +27,10 @@ const appRoutes: Routes =[
     AppComponent,
     RemontComponent,
     AddComponent,
-    EditComponent
+    EditComponent,
+    VidComponent,
+    EditVidComponent,
+    AddVidComponent
   ],
   imports: [
     BrowserModule,

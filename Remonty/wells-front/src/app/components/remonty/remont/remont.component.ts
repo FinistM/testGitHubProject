@@ -18,13 +18,16 @@ export class RemontComponent {
       httpClient.get<Remont[]>("http://192.168.7.111:8081/remonty")
       .subscribe(result=>{
         this.remonty = result;
-
       })
     }
 
+   ShowAddRemont(){
+       this.router.navigate(["addRemontForm"]);
+   }
+
   Editor(remont:Remont):void{
     localStorage.setItem("id",remont.id.toString());
-    this.router.navigate(["editForm"]);
+    this.router.navigate(["editRemontForm"]);
   }
 
   Delete(remont:Remont){

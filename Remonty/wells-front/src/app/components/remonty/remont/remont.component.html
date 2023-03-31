@@ -1,10 +1,10 @@
 <title>Список</title>
 <div>
-  <h1 class="text-center" style="padding: 30px 0px 10px 0px">Информация по ремонтам</h1>
+  <h1 class="text-center" style="padding: 30px 0px 10px 0px">Ремонт</h1>
   <div class = "container" style="padding: 20px 20px 0px 20px; width: 90%">
     <div class="table_area">
       <table class = "table table-striped">
-        <thead >
+        <thead>
         <tr>
           <th style="min-width:50px; border: 2px solid #C0C0C0">ID</th>
           <th style="border: 2px solid #C0C0C0; min-width: 100px">Скважина</th>
@@ -20,7 +20,7 @@
           <th style="border: 2px solid #C0C0C0; min-width: 500px">Примечание</th></tr>
         </thead>
         <tbody>
-        <tr *ngFor="let remont of remonty" > <!-- heroes указано в файле app.components.ts-->
+        <tr *ngFor="let remont of remonty" >
           <td style="border: 2px solid #C0C0C0">{{remont.id}}</td>
           <td style="border: 2px solid #C0C0C0">{{remont.skvajina}}</td>
           <td style="border: 2px solid #C0C0C0">{{remont.kyst}}</td>
@@ -45,6 +45,7 @@
         </tbody>
       </table>
     </div>
+    <button (click)="ShowAddRemont()" name="add-click">Добавить</button>
   </div>
 </div>
 
