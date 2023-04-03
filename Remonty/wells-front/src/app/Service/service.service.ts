@@ -20,6 +20,7 @@ export class ServiceService {
 
   getRemont(){
     return this.http.get<Remont>(this.Url);
+    console.log("Status 2");
   }
 
   createRemont(skvajina: String, kyst: String, mestorojdenie: String, vid_remonta: String, prichina: String, start_date_year: String, start_date_month: String, start_date_day: String, start_time_hour: String, start_time_minute: String, end_date_year: String, end_date_month: String, end_date_day: String, end_time_hour: String, end_time_minute: String, brigada: String, primechanie: String){
@@ -33,6 +34,7 @@ export class ServiceService {
 
   getRemontId(id:number){
     return this.http.get<Remont>(this.Url+"/"+id);
+    console.log("Status 3");
   }
 
   updateRemont(remont:Remont){

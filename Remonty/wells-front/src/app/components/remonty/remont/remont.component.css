@@ -3,22 +3,21 @@
   text-align: left;
   height: 600px;
   overflow: scroll;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 thead {
   background: #e3ebff;
   color: #404040;
   box-sizing: content-box;
-
+  position: sticky;
+  top: 0px;
 }
 
 td{
   text-align: center;
   vertical-align: middle;
-  height: 50px;
   padding: 0px;
-
 }
 
 tr{
@@ -54,7 +53,7 @@ button[name="del-click"]:active {
 background: #9dd0fc
 }
 
-button[name="add-click"] { background: #58a1e0; width: 100%; margin-bottom:20px }
+button[name="add-click"] { background: #58a1e0; width: 100%; margin-bottom: 40px; }
 
 button[name="edit-click"] { background: #C0C0C0 }
 
@@ -83,7 +82,7 @@ button[name="add-click"] {
 color: white;
 border: 0px solid #C0C0C0;
 line-height: 1.25;
-padding: 0.5rem 1rem;
+padding: 0.5rem 0rem;
 border-radius: 0.25rem;
 cursor: pointer;
 }

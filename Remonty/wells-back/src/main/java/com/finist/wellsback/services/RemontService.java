@@ -14,12 +14,12 @@ public class RemontService {
     @Autowired
     //позволяет Spring разрешать и внедрять сторонние компоненты в наш компонент
     public RemontService(RemontRepository repository) {
-        this.repository = repository;
-    }
+        this.repository = repository;}
 
     public List<Remont> getAllRemonty() {
         return (List<Remont>) repository.findAll();
     }
+
 
     public Remont getRemontId(long id) {
         System.out.println("getRemontId sent data"); return repository.findById(id).get();

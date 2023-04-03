@@ -1,7 +1,7 @@
 <title>Список</title>
 <div>
-  <h1 class="text-center" style="padding: 30px 0px 10px 0px">Ремонт</h1>
-  <div class = "container" style="padding: 20px 20px 0px 20px; width: 90%">
+  <h1 class="text-center" style="padding: 30px 0px 0px 0px">Ремонт</h1>
+  <div class = "container" style="padding: 10px 10px 0px 10px; width: 90%">
     <div class="table_area">
       <table class = "table table-striped">
         <thead>
@@ -46,9 +46,31 @@
       </table>
     </div>
     <button (click)="ShowAddRemont()" name="add-click">Добавить</button>
+    <div><h1 style="cursor: pointer; color:#C0C0C0; padding: 10px 0px 10px 0px; font-size: 11pt; border-bottom: 2px solid #C0C0C0" (click)="showPanel()">Детализация по виду</h1></div>
+    <div *ngIf=isPanel>
+      <div class="table_area" style="height:200px">
+        <table class = "table table-striped">
+          <thead>
+          <tr>
+            <th style="border: 2px solid #C0C0C0; min-width: 200px">Вид</th>
+            <th style="border: 2px solid #C0C0C0; min-width: 50px">Количество</th>
+            <th style="border: 2px solid #C0C0C0; min-width: 500px">Детализация</th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let vid of vidy">
+            {{Empty()}}{{check(vid.name)}}
+            <td style="border: 2px solid #C0C0C0">{{vid.name}}</td>
+            <td style="border: 2px solid #C0C0C0">{{x}}</td>
+            <td style="border: 2px solid #C0C0C0; white-space: nowrap; padding: 0px 20px 0px 20px; text-align:left">{{ditali}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
+
 </div>
 
 
 <!--<div style="overflow-y: scroll; height:80px">-->
-
+<!--style="display: none"-->

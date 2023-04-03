@@ -13,6 +13,7 @@ export class AppComponent {
 
    ShowListRemontov(){
         this.router.navigate(["remontList"]);
+        console.log("Status 4");
    }
 
    ShowListVidov(){

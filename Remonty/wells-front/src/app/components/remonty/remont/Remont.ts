@@ -18,6 +18,7 @@ export class Remont {
     private _brigada: string;
     private _primechanie: string;
 
+
     constructor(id: bigint, skvajina: string, kyst: string, mestorojdenie: string, vid_remonta: string, prichina: string, start_date_year: string, start_date_month: string, start_date_day: string, start_time_hour: string, start_time_minute: string, end_date_year: string, end_date_month: string, end_date_day: string, end_time_hour: string, end_time_minute: string, brigada: string, primechanie: string){
         this._id = id;
         this._skvajina = skvajina;
@@ -37,22 +38,27 @@ export class Remont {
         this._end_time_minute = end_time_minute;
         this._brigada = brigada;
         this._primechanie = primechanie;
+        console.log("Status 5");
     }
 
     get id(): bigint {
       return this._id;
+      console.log("Status 6");
     }
 
     set id(value: bigint){
       this._id = value;
+      console.log("Status 7");
     }
 
     get skvajina(): string {
       return this._skvajina;
+      console.log("Status 8");
     }
 
     set skvajina(value: string){
       this._skvajina = value;
+      console.log("Status 9");
     }
 
     get kyst(): string {
