@@ -29,7 +29,7 @@ export class RemontComponent {
       })
 
       httpClient.get<Vid[]>("http://localhost:8081/vidy")
-      //httpClient.get<Remont[]>("http://192.168.7.111:8081/remonty")
+      //httpClient.get<Vid[]>("http://192.168.7.111:8081/vidy")
       .subscribe(result=>{
         this.vidy = result;
         console.log(this.vidy);

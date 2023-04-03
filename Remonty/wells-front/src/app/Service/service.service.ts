@@ -16,7 +16,7 @@ export class ServiceService {
   Url='http://localhost:8081/remonty';
   //Url='http://192.168.7.111:8081/remonty';
   Url1='http://localhost:8081/vidy';
-  //Url1='http://192.168.7.111:8081/remonty';
+  //Url1='http://192.168.7.111:8081/vidy';
 
   getRemont(){
     return this.http.get<Remont>(this.Url);
