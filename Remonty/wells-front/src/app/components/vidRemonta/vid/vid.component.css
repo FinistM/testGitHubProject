@@ -54,7 +54,7 @@ button[name="del-click"]:active {
 background: #9dd0fc
 }
 
-button[name="add-click"] { background: #58a1e0; width: 100%; margin-bottom:20px }
+button[name="add-click"] { background: #58a1e0; width: 100%; margin-bottom:38px }
 
 button[name="edit-click"] { background: #C0C0C0 }
 

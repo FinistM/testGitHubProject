@@ -86,3 +86,16 @@ padding: 0.5rem 0rem;
 border-radius: 0.25rem;
 cursor: pointer;
 }
+
+.detalization
+{
+ cursor: pointer;
+ color:#C0C0C0;
+ padding: 10px 0px 10px 0px;
+ font-size: 11pt;
+ border-bottom: 2px solid #C0C0C0
+}
+
+.detalization:hover {
+ color:#999999;
+}
