@@ -12,31 +12,39 @@ import { Vid } from './Vid';
 export class VidComponent {
     title = 'vid-angular-project';
     vidy!: Vid[];
+    i = 0;
 
     constructor(private httpClient: HttpClient, private router:Router, private service:ServiceService) {
-      httpClient.get<Vid[]>("http://localhost:8081/vidy")
-      //httpClient.get<Vid[]>("http://192.168.7.111:8081/vidy")
-      .subscribe(result=>{
-        this.vidy = result;
-      })
+        httpClient.get<Vid[]>("http://localhost:8081/vidy")
+        //httpClient.get<Vid[]>("http://192.168.7.111:8081/vidy")
+        .subscribe(result=>{
+            this.vidy = result;
+        })
     }
 
-       ShowAddRemont(){
-           this.router.navigate(["addVidForm"]);
-       }
+    Clear(){
+        this.i = 0
+    }
+
+    Numeracia(){
+        this.i++; return this.i
+    }
+
+    ShowAddRemont(){
+        this.router.navigate(["addVidForm"]);
+    }
 
     Editor(vid:Vid):void{
-      localStorage.setItem("id",vid.id.toString());
-      this.router.navigate(["editVidForm"]);
+        localStorage.setItem("id",vid.id.toString());
+        this.router.navigate(["editVidForm"]);
     }
 
     Delete(vid:Vid){
-
-      this.service.deleteVid(vid)
-      .subscribe(data =>{
-        this.vidy=this.vidy.filter(r => r !== vid );
-        this.router.navigate(["vidyList"]);
-        alert("Запись удалена!");
-      })
+        this.service.deleteVid(vid)
+        .subscribe(data =>{
+            this.vidy=this.vidy.filter(r => r !== vid );
+            this.router.navigate(["vidyList"]);
+            alert("Запись удалена!");
+        })
     }
 }

@@ -1,47 +1,47 @@
 <title>Список</title>
 <div>
   <h1 class="text-center" style="padding: 30px 0px 0px 0px">Ремонт</h1>
-  <div class = "container" style="padding: 10px 10px 0px 10px; width: 90%">
+  <div class="container" style="padding: 10px 10px 0px 10px; width: 90%">
     <div class="table_area">
-      <table class = "table table-striped">
+      <table class="table table-striped">
         <thead>
-        <tr>
-          <th style="min-width:50px; border: 2px solid #C0C0C0">ID</th>
-          <th style="border: 2px solid #C0C0C0; min-width: 100px">Скважина</th>
-          <th style="border: 2px solid #C0C0C0; min-width: 100px">Куст</th>
-          <th style="border: 2px solid #C0C0C0; min-width: 300px">Месторождение</th>
-          <th style="border: 2px solid #C0C0C0; min-width: 300px">Вид ремонта</th>
-          <th style="border: 2px solid #C0C0C0; min-width: 300px">Причина</th>
-          <th style="border: 2px solid #C0C0C0; min-width: 160px;">Дата начала</th>
-          <th style="border: 2px solid #C0C0C0; min-width: 160px;">Время начала</th>
-          <th style="border: 2px solid #C0C0C0; min-width: 160px;">Дата окончания</th>
-          <th style="border: 2px solid #C0C0C0; min-width: 160px;">Время окончания</th>
-          <th style="border: 2px solid #C0C0C0; min-width: 300px">Бригада</th>
-          <th style="border: 2px solid #C0C0C0; min-width: 500px">Примечание</th></tr>
+          <tr>
+            <th style="min-width:50px; border: 2px solid #C0C0C0">№</th>
+            <th style="border: 2px solid #C0C0C0; min-width: 100px">Скважина</th>
+            <th style="border: 2px solid #C0C0C0; min-width: 100px">Куст</th>
+            <th style="border: 2px solid #C0C0C0; min-width: 300px">Месторождение</th>
+            <th style="border: 2px solid #C0C0C0; min-width: 300px">Вид ремонта</th>
+            <th style="border: 2px solid #C0C0C0; min-width: 300px">Причина</th>
+            <th style="border: 2px solid #C0C0C0; min-width: 160px;">Дата начала</th>
+            <th style="border: 2px solid #C0C0C0; min-width: 160px;">Время начала</th>
+            <th style="border: 2px solid #C0C0C0; min-width: 160px;">Дата окончания</th>
+            <th style="border: 2px solid #C0C0C0; min-width: 160px;">Время окончания</th>
+            <th style="border: 2px solid #C0C0C0; min-width: 300px">Бригада</th>
+            <th style="border: 2px solid #C0C0C0; min-width: 500px">Примечание</th>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let remont of remonty" >
-          <td style="border: 2px solid #C0C0C0">{{remont.id}}</td>
-          <td style="border: 2px solid #C0C0C0">{{remont.skvajina}}</td>
-          <td style="border: 2px solid #C0C0C0">{{remont.kyst}}</td>
-          <td style="border: 2px solid #C0C0C0">{{remont.mestorojdenie}}</td>
-          <td style="border: 2px solid #C0C0C0">{{remont.vid_remonta}}</td>
-          <td style="border: 2px solid #C0C0C0">{{remont.prichina}}</td>
-          <td style="border: 2px solid #C0C0C0">{{remont.start_date_day}} / {{remont.start_date_month}} / {{remont.start_date_year}}</td>
-          <td style="border: 2px solid #C0C0C0">{{remont.start_time_hour}} : {{remont.start_time_minute}}</td>
-          <td style="border: 2px solid #C0C0C0">{{remont.end_date_day}} / {{remont.end_date_month}} / {{remont.end_date_year}}</td>
-          <td style="border: 2px solid #C0C0C0">{{remont.end_time_hour}} : {{remont.end_time_minute}}</td>
-          <td style="border: 2px solid #C0C0C0">{{remont.brigada}}</td>
-          <td style="border: 2px solid #C0C0C0; white-space: nowrap">
-            <div style="text-align: center; height:50px; padding-left: 15px; padding-right: 15px; line-height:49px ">
-              {{remont.primechanie}}
-            </div>
-          </td>
-          <td style="border: 2px solid #C0C0C0; min-width: 240px" >
-            <button (click)="Editor(remont)" name="edit-click">Изменить</button>
-            <button (click)="Delete(remont)" name="del-click">Удалить</button>
-          </td>
-        </tr>
+        {{Clear()}}
+          <tr *ngFor="let remont of remonty">
+            <td style="border: 2px solid #C0C0C0">{{Numeracia()}}</td>
+            <td style="border: 2px solid #C0C0C0">{{remont.skvajina}}</td>
+            <td style="border: 2px solid #C0C0C0">{{remont.kyst}}</td>
+            <td style="border: 2px solid #C0C0C0">{{remont.mestorojdenie}}</td>
+            <td style="border: 2px solid #C0C0C0">{{Adapt(remont.vid_remonta)}}{{vid_rem}}</td>
+            <td style="border: 2px solid #C0C0C0">{{remont.prichina}}</td>
+            <td style="border: 2px solid #C0C0C0">{{remont.date_start}}</td>
+            <td style="border: 2px solid #C0C0C0">{{remont.time_start}}</td>
+            <td style="border: 2px solid #C0C0C0">{{remont.date_end}}
+            <td style="border: 2px solid #C0C0C0">{{remont.time_end}}
+            <td style="border: 2px solid #C0C0C0">{{remont.brigada}}</td>
+            <td style="border: 2px solid #C0C0C0; white-space: nowrap">
+              <div style="text-align: center; height:50px; padding-left: 15px; padding-right: 15px; line-height:49px ">{{remont.primechanie}}</div>
+            </td>
+            <td style="border: 2px solid #C0C0C0; min-width: 240px">
+              <button (click)="Editor(remont)" name="edit-click">Изменить</button>
+              <button (click)="Delete(remont)" name="del-click">Удалить</button>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -49,28 +49,26 @@
     <div><h1 class="detalization" (click)="showPanel()">Детализация по виду</h1></div>
     <div *ngIf=isPanel>
       <div class="table_area" style="height:200px">
-        <table class = "table table-striped">
+        <table class="table table-striped">
           <thead>
-          <tr>
-            <th style="border: 2px solid #C0C0C0; min-width: 200px">Вид</th>
-            <th style="border: 2px solid #C0C0C0; min-width: 50px">Количество</th>
-            <th style="border: 2px solid #C0C0C0; min-width: 500px">Детализация</th>
+            <tr>
+              <th style="border: 2px solid #C0C0C0; min-width: 200px">Вид</th>
+              <th style="border: 2px solid #C0C0C0; min-width: 50px">Количество</th>
+              <th style="border: 2px solid #C0C0C0; min-width: 500px">Детализация</th>
+            </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let vid of vidy">
-            {{Empty()}}{{check(vid.name)}}
-            <td style="border: 2px solid #C0C0C0">{{vid.name}}</td>
-            <td style="border: 2px solid #C0C0C0">{{x}}</td>
-            <td style="border: 2px solid #C0C0C0; white-space: nowrap; padding: 0px 20px 0px 20px; text-align:left">{{ditali}}</td>
-          </tr>
+            <tr *ngFor="let vid of vidy">
+              {{Clear()}}{{check(vid.name)}}
+              <td style="border: 2px solid #C0C0C0">{{vid.name}}</td>
+              <td style="border: 2px solid #C0C0C0">{{x}}</td>
+              <td style="border: 2px solid #C0C0C0; white-space: nowrap; padding: 0px 20px 0px 20px; text-align:left">
+                {{ditali}}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-
 </div>
-
-
-<!--<div style="overflow-y: scroll; height:80px">-->
-<!--style="display: none"-->
