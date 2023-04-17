@@ -1,17 +1,24 @@
-<nav class="navbar navbar-expand-sm bg-primary - navbar-dark" style="width: 100%; position: -webkit-sticky; position: sticky; top: 0; z-index: 1">
+<nav class="navbar navbar-expand-sm bg-primary - navbar-dark"
+     style="width: 100%; position: -webkit-sticky; position: sticky; top: 0; z-index: 1">
   <table class="nev-item">
-    <tr><td><h3 (click)="ShowListRemontov()" style="cursor:default; padding-top: 10px; color: white">Remont</h3></td>
+    <tr>
+      <td><h3 (click)="ShowListRemontov()" style="cursor:default; padding-top: 10px; color: white">Remont</h3></td>
       <td align="right" stylae="border: 4px double black; width: 100px">
-        <button (click)="ShowListRemontov()" class="btn btn-info" style="color: white; background: #0275d8; border: 0px; padding: 10px">Ремонт</button>
-        <button (click)="ShowListVidov()" class="btn btn-info" style="color: white; background: #0275d8; border: 0px; padding: 10px; margin-left:10px">Виды ремонта</button>
-      </td></tr>
+        <button (click)="ShowListRemontov()" class="btn btn-info"
+                style="color: white; background: #0275d8; border: 0px; padding: 10px">Ремонт
+        </button>
+        <button (click)="ShowListVidov()" class="btn btn-info"
+                style="color: white; background: #0275d8; border: 0px; padding: 10px; margin-left:10px">Виды ремонта
+        </button>
+      </td>
+    </tr>
   </table>
 </nav>
 
 <router-outlet></router-outlet>
 
-<footer class = "footer" style="background: #C0C0C0">
-  <div class = "container" style="width:100%; padding: 22px 40px 10px 40px">
+<footer class="footer" style="background: #C0C0C0">
+  <div class="container" style="width:100%; padding: 22px 40px 10px 40px">
     <table style="width:100%">
       <tr>
         <td style="text-align:left"><span>Created by @2023Finist-M</span></td>

@@ -4,24 +4,25 @@ import { ServiceService } from 'src/app/Service/service.service';
 import { Vid } from 'src/app/components/vidRemonta/vid/Vid';
 
 @Component({
-  selector: 'app-add-vid',
-  templateUrl: './add-vid.component.html',
-  styleUrls: ['./add-vid.component.css']
+    selector: 'app-add-vid',
+    templateUrl: './add-vid.component.html',
+    styleUrls: ['./add-vid.component.css']
 })
 
 export class AddVidComponent implements OnInit{
 
-   vid!: Vid;
-   constructor(private router:Router, private service:ServiceService) {}
+    vid!: Vid;
+    constructor(private router:Router, private service:ServiceService) {}
 
-   ngOnInit(){
-   }
+    ngOnInit(){
+    }
 
-   Add(name:String){
-     this.service.createVid(name)
-     .subscribe(data => {
-        alert("Информация добавлена");
-        this.router.navigate(["vidList"]);
-     })
-   }
+    Add(name:String){
+        if (name == "") alert("Проверьте заплнение полей!")
+        else this.service.createVid(name)
+        .subscribe(data => {
+            alert("Информация добавлена");
+            this.router.navigate(["vidList"]);
+        })
+    }
 }
