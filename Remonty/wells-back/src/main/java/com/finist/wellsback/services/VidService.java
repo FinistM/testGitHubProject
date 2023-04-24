@@ -1,7 +1,8 @@
 package com.finist.wellsback.services;
 
-import com.finist.wellsback.models.Remont;
+import com.finist.wellsback.models.Details;
 import com.finist.wellsback.models.Vid;
+import com.finist.wellsback.repository.DetalizationRepository;
 import com.finist.wellsback.repository.VidRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,17 +12,22 @@ import java.util.List;
 @Service
 public class VidService {
     private final VidRepository repository;
+    private final DetalizationRepository repositoryDet;
 
     @Autowired
-    public VidService(VidRepository repository) {
-        this.repository = repository;
+    public VidService(VidRepository repository, DetalizationRepository repositoryDet) { this.repository = repository;
+        this.repositoryDet = repositoryDet;
     }
 
     public List<Vid> getAllVidy() { return (List<Vid>) repository.findByOrderByNameAsc(); }
 
+    public void ditalisationUpdate() { repositoryDet.ditalisationUpdate(); }
+
+    public List<Details> getDitalisation() { return repositoryDet.findByOrderByNameAsc(); }
+
     public Vid getVidId(long id) { return repository.findById(id).get(); }
 
-    public Vid vidPostAdd(Vid v){ return repository.save(v); }
+    public Vid vidPostAdd(Vid v) { return repository.save(v); }
 
     public Vid editVid(Vid v) { return repository.save(v); }
 

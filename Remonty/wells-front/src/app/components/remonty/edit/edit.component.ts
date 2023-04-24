@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Remont } from 'src/app/components/remonty/remont/Remont';
 import { ServiceService } from 'src/app/Service/service.service';
 import { Vid } from 'src/app/components/vidRemonta/vid/Vid';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-edit',
@@ -33,7 +34,7 @@ export class EditComponent implements OnInit{
     end_time_minute!: string;
 
     constructor(private httpClient: HttpClient, private router:Router, private service:ServiceService) {
-        httpClient.get<Vid[]>("http://localhost:8081/vidy")
+        httpClient.get<Vid[]>(environment.UrlVid)
         //httpClient.get<Vid[]>("http://192.168.7.111:8081/vidy")
         .subscribe(result=>{
             this.vidy = result;

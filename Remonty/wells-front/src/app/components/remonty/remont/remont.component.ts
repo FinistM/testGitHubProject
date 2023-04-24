@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { ServiceService } from 'src/app/Service/service.service';
 import { Router } from '@angular/router';
 import { Remont } from './Remont';
+import { Detail } from 'src/app/components/details/detail/Detail';
 import { Vid } from 'src/app/components/vidRemonta/vid/Vid';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-remont',
@@ -13,15 +15,14 @@ import { Vid } from 'src/app/components/vidRemonta/vid/Vid';
 
 export class RemontComponent {
     title = 'remont-angular-project';
-    remonty!: Remont[]; vidy!: Vid[];
+    remonty!: Remont[]; vidy!: Vid[]; details!: Detail[];
     x = 0; i = 0; y = 0;
-    ditali = ""; a = "";
+    det = ""; a = "";
     isPanel:boolean = false;
     vid_rem!: Object;
 
     constructor(private httpClient: HttpClient, private router:Router, private service:ServiceService) {
-        httpClient.get<Remont[]>("http://localhost:8081/remonty")
-        //httpClient.get<Remont[]>("http://192.168.7.111:8081/remonty")
+        httpClient.get<Remont[]>(environment.UrlRemont)
         .subscribe(result=>{
             this.remonty = result;
             for (let remont of this.remonty){
@@ -33,26 +34,15 @@ export class RemontComponent {
             }
         })
 
-        httpClient.get<Vid[]>("http://localhost:8081/vidy")
-        //httpClient.get<Vid[]>("http://192.168.7.111:8081/vidy")
-        .subscribe(result=>{
-                this.vidy = result;
+
+        httpClient.get<Detail[]>(environment.UrlDetail)
+            .subscribe(result=>{
+            this.details = result;
         })
     }
 
-    check(a:string){
-        for(let remont of this.remonty){
-            if(a==Object.values(remont.vid_remonta)[1]){
-                this.x+=1;
-                this.ditali=this.ditali + " " + remont.date_start + " " + remont.time_start + "\u00A0\u00A0" +
-                "\u2013" + "\u00A0\u00A0" + remont.date_end + " " + remont.time_end + "\u00A0\u00A0" +
-                remont.mestorojdenie + " / " + remont.kyst + " / " + remont.skvajina + ";"  + "\u00A0\u00A0";
-            }
-        }
-    }
-
     Clear(){
-        this.x = 0; this.ditali = ""; this.y = 0
+        this.x = 0; this.det = ""; this.y = 0
     }
 
     Numeracia(){
@@ -80,8 +70,12 @@ export class RemontComponent {
         this.service.deleteRemont(remont)
         .subscribe(data =>{
             this.remonty=this.remonty.filter(r => r !== remont );
-            this.router.navigate(["remontyList"]);
             alert("Запись удалена!");
+            this.httpClient.get<Detail[]>(environment.UrlDetail)
+                .subscribe(result=>{
+                this.details = result;
+            })
+            this.router.navigate(["remontyList"]);
         })
     }
 }

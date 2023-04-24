@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/Service/service.service';
 import { Remont } from 'src/app/components/remonty/remont/Remont';
 import { Vid } from 'src/app/components/vidRemonta/vid/Vid';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -23,8 +24,7 @@ export class AddComponent implements OnInit{
     k!: boolean;
 
     constructor(private httpClient: HttpClient, private router:Router, private service:ServiceService) {
-        httpClient.get<Vid[]>("http://localhost:8081/vidy")
-        //httpClient.get<Vid[]>("http://192.168.7.111:8081/vidy")
+        httpClient.get<Vid[]>(environment.UrlVid)
         .subscribe(result=>{
             this.vidy = result;
         })
@@ -39,7 +39,7 @@ export class AddComponent implements OnInit{
     primechanie:string){
 
         for(let vid of this.vidy){
-            if(Object.values(vid_remonta)[1]==Object.values(vid.name)[1]){
+            if(vid_remonta==vid.name){
                   this.vid_rem=vid;
             }
         }

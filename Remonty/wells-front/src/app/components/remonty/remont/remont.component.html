@@ -57,16 +57,13 @@
               <th style="border: 2px solid #C0C0C0; min-width: 500px">Детализация</th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let vid of vidy">
-              {{Clear()}}{{check(vid.name)}}
-              <td style="border: 2px solid #C0C0C0">{{vid.name}}</td>
-              <td style="border: 2px solid #C0C0C0">{{x}}</td>
-              <td style="border: 2px solid #C0C0C0; white-space: nowrap; padding: 0px 20px 0px 20px; text-align:left">
-                {{ditali}}
-              </td>
-            </tr>
-          </tbody>
+              <tbody>
+                <tr *ngFor="let detail of details">
+                  <td style="border: 2px solid #C0C0C0">{{detail.name}}</td>
+                  <td style="border: 2px solid #C0C0C0">{{detail.col}}</td>
+                  <td style="border: 2px solid #C0C0C0; white-space: nowrap; padding: 0px 20px 0px 20px; text-align:left">{{detail.detalization}}</td>
+                </tr>
+              </tbody>
         </table>
       </div>
     </div>
