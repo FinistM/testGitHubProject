@@ -35,7 +35,6 @@ export class EditComponent implements OnInit{
 
     constructor(private httpClient: HttpClient, private router:Router, private service:ServiceService) {
         httpClient.get<Vid[]>(environment.UrlVid)
-        //httpClient.get<Vid[]>("http://192.168.7.111:8081/vidy")
         .subscribe(result=>{
             this.vidy = result;
         })

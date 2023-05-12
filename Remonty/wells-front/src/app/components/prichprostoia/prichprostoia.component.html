@@ -1,0 +1,112 @@
+<title>Причины простоя бригад ремонтов</title>
+<div>
+  <h1 class="text-center" style="padding: 30px 0px 0px 0px">Причины простоя бригад ремонтов</h1>
+  <div class="container" style="padding: 10px 10px 0px 10px; width: 90%">
+    <div align="center" class="table_area" style="min-height:700px; width:100%">
+      <table style="width:100%; min-width:800px">
+        <tr>
+          <th style="width:300px">Причины простоя</th>
+          <th>Детали</th>
+        </tr>
+        <tr>
+          <td style="height:600px; width:300px; text-align:left; border-right: 1px solid #CCCCCC;">
+            <tr *ngFor="let vid of vidPrichiny; let i = index">
+              <td style="text-align:left; width:290px">
+                <button (click)="showEdit(i)" style="width:30px;">{{open[i]}}</button><button (click)="GetGroup(vid)">{{AdaptVid(vid)}}</button>
+                <div *ngIf=isEdit[i] style="padding-bottom:10px; margin-left: 50px">
+                  <div *ngFor="let prich of prichina">
+                    <div *ngIf=Test(prich,vid)>
+                      <button (click)="GetPar(prich)" style="width: 230px; text-align:left; display: block">{{AdaptPrich(prich)}}</button>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </td>
+          <td style="min-height:600px">
+<!--            <div *ngIf="showPrichOrGroup">-->
+<!--              <tr>-->
+<!--                <td class="nameset">-->
+<!--                  Код группы:-->
+<!--                </td>-->
+<!--                <td class="countset">-->
+<!--                  {{parametr[2]}}-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="nameset">-->
+<!--                  Группа:-->
+<!--                </td>-->
+<!--                <td class="countset">-->
+<!--                  <input type="text" value={{parametr[3]}}>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--            </div>-->
+<!--            <div *ngIf="!showPrichOrGroup">-->
+<!--              <tr >-->
+<!--                <td class="nameset">-->
+<!--                  Код записи:-->
+<!--                </td>-->
+<!--                <td class="countset">-->
+<!--                  {{parametr[0]}}-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              <tr >-->
+<!--                <td class="nameset">-->
+<!--                  Группа:-->
+<!--                </td>-->
+<!--                <td class="countset">-->
+<!--                  {{parametr[3]}}-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="nameset">-->
+<!--                  Причина:-->
+<!--                </td>-->
+<!--                <td class="countset">-->
+<!--                  <input type="text" value={{parametr[1]}}>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="nameset" colspan="2" style="text-align:left;padding-left:180px; padding-top:10px">-->
+<!--                  <button name="edit-click">Изменить</button>-->
+<!--                  <button name="del-click">Удалить</button>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--            </div>-->
+
+            <div *ngIf="showPrichOrGroup"  style="margin-left:50px" class="form-group">
+              <label>Код группы: {{parametr[2]}}</label><br>
+              <label>Группа:</label>
+              <input class="form-control" type="text" value={{parametr[3]}}>
+              <button name="edit-click">Сохранить изменения</button>
+              <button name="del-click">Удалить</button>
+            </div>
+            <div *ngIf="!showPrichOrGroup" style="margin-left:50px" class="form-group">
+              <label>Код записи: {{parametr[0]}}</label><br>
+              <label>Группа: {{parametr[3]}}</label><br>
+              <label>Причина:</label>
+              <input class="form-control" type="text" value={{parametr[1]}}>
+              <button name="edit-click">Сохранить изменения</button>
+              <button name="del-click">Удалить</button>
+            </div>
+            <div class="addForm" *ngIf="!openAddPan">
+              <h5 style="color:#999999">Добавление</h5><br>
+              <label>Группа:</label><br>
+              <select class="form-control">
+                <option selected style="display: none"></option>
+                <option *ngFor="let vid of vidyPrichProstoia">{{vid.groups}}</option>
+              </select><br>
+              <label>Причина:</label>
+              <input class="form-control" type="text" value={{parametr[1]}}>
+              <button name="del-click" style="margin:0">Добавить</button>
+            </div>
+            <button (click)="ShowAddPanel()" name="show-panel-click">{{AddClickText}}</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<!--*ngIf="String(Object.values(Object.values(prich)[2])[1])==vid"-->
+<!--*ngIf=Test()-->

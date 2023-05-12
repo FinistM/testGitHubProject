@@ -12,7 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-
 @Table(name = "vidy")
 public class Vid {
 

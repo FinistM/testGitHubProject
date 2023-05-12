@@ -15,15 +15,14 @@ public class VidService {
     private final DetalizationRepository repositoryDet;
 
     @Autowired
-    public VidService(VidRepository repository, DetalizationRepository repositoryDet) { this.repository = repository;
+    public VidService(VidRepository repository, DetalizationRepository repositoryDet) {
+        this.repository = repository;
         this.repositoryDet = repositoryDet;
     }
 
     public List<Vid> getAllVidy() { return (List<Vid>) repository.findByOrderByNameAsc(); }
 
-    public void ditalisationUpdate() { repositoryDet.ditalisationUpdate(); }
-
-    public List<Details> getDitalisation() { return repositoryDet.findByOrderByNameAsc(); }
+    public List<Details> ditalisationGet() { return (List<Details>) repositoryDet.findAll(); }
 
     public Vid getVidId(long id) { return repository.findById(id).get(); }
 

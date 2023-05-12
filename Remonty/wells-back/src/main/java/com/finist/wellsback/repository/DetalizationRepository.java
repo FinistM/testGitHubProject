@@ -1,45 +1,18 @@
 package com.finist.wellsback.repository;
 
 import com.finist.wellsback.models.Details;
-import jakarta.transaction.Transactional;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 
+@Repository
+public interface DetalizationRepository extends CrudRepository<Details, String> {
 
-public interface DetalizationRepository extends CrudRepository<Details, String>{
-
-
-    //@Query(value = "SELECT vidy.name FROM vidy", nativeQuery = true)
-    @Transactional
-    @Modifying(clearAutomatically = true)
-    @Query(value = "DROP TABLE IF EXISTS dettab; \n" +
-            "WITH t as (\n" +
-            "\tSELECT r.*, v.name\n" +
-            "\tFROM remonty as r\n" +
-            "\tFULL OUTER JOIN vidy as v ON r.vid_remonta = v.id\n" +
-            ")\n" +
-            "SELECT name, \n" +
-            "cast(concat_ws('',COUNT(id)) as varchar) as col,\n" +
-            "CASE\n" +
-            "WHEN COUNT(id)=0 THEN cast('...' as varchar)\n" +
-            "ELSE\n" +
-            "array_to_string(\n" +
-            "\tarray_agg(\n" +
-            "\t\tconcat_ws(\n" +
-            "\t\t\t'  ',\n" +
-            "\t\t\tconcat_ws(' - ', date_start, date_end),\n" +
-            "\t\t\tconcat_ws('/', skvajina, kyst, mestorojdenie)\n" +
-            "\t\t)\n" +
-            "\t),\n" +
-            "\t';     '\n" +
-            ") END detalization\n" +
-            "INTO dettab\n" +
-            "FROM t\n" +
-            "GROUP BY name", nativeQuery = true)
-    public void ditalisationUpdate();
-
-    public List<Details> findByOrderByNameAsc();
+    //@Query(value = "SELECT * FROM vidy", nativeQuery = true)
+    @Query(value = "WITH t as (SELECT r.*, v.name FROM remonty as r	FULL OUTER JOIN vidy as v ON r.vid_remonta = v.id) SELECT name, cast(concat_ws('',COUNT(id)) as varchar) as col, CASE WHEN COUNT(id)=0 THEN cast('...' as varchar) ELSE array_to_string(array_agg(concat_ws('  ',concat_ws(' - ', date_start, date_end),concat_ws('/', skvajina, kyst, mestorojdenie))),';     ' ) END detalization FROM t GROUP BY name", nativeQuery = true)
+    Collection<Details> findAll();/*List<String> ditalisationGet();*/
 }

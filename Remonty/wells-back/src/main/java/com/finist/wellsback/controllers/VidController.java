@@ -3,16 +3,10 @@ package com.finist.wellsback.controllers;
 import com.finist.wellsback.models.Details;
 import com.finist.wellsback.models.Vid;
 import com.finist.wellsback.services.VidService;
-import org.hibernate.annotations.SQLUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 
 @RestController                                                                                                         //это удобная аннотация, объединяющая @Controller и @ResponseBody , что устраняет необходимость аннотировать каждый метод обработки запросов класса контроллера аннотацией @ResponseBody
 @RequestMapping("/vidy")                                                                                                //аннотация @RequestMapping используется для сопоставления веб-запросов с методами Spring Controller.
@@ -35,9 +29,7 @@ public class VidController {
     @GetMapping("/det")
     public List<Details> getDitalisation() {
         System.out.println("Detalization updated");
-        service.ditalisationUpdate();
-        System.out.println("Detalization sended");
-        return service.getDitalisation();
+        return service.ditalisationGet();
     }
 
     @GetMapping("/{id}")                                                                                                //получение одной строки

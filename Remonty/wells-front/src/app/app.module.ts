@@ -11,6 +11,8 @@ import { EditComponent } from './components/remonty/edit/edit.component';
 import { VidComponent } from './components/vidRemonta/vid/vid.component';
 import { EditVidComponent } from './components/vidRemonta/edit-vid/edit-vid.component';
 import { AddVidComponent } from './components/vidRemonta/add-vid/add-vid.component';
+import { SpravListComponent } from './components/spravlist/spravlist.component';
+import { PrichprostoiaComponent } from './components/prichprostoia/prichprostoia.component';
 
 const appRoutes: Routes =[
   {path: 'addRemontForm', component: AddComponent},
@@ -18,7 +20,9 @@ const appRoutes: Routes =[
   {path: 'remontList', component: RemontComponent},
   {path: 'vidList', component: VidComponent},
   {path: 'addVidForm', component: AddVidComponent},
-  {path: 'editVidForm', component: EditVidComponent}
+  {path: 'editVidForm', component: EditVidComponent},
+  {path: 'spravList', component: SpravListComponent},
+  {path: 'prichProstList', component: PrichprostoiaComponent}
 ];
 
 
@@ -30,7 +34,9 @@ const appRoutes: Routes =[
     EditComponent,
     VidComponent,
     EditVidComponent,
-    AddVidComponent
+    AddVidComponent,
+    SpravListComponent,
+    PrichprostoiaComponent
   ],
   imports: [
     BrowserModule,

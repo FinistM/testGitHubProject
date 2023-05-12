@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Remont } from 'src/app/components/remonty/remont/Remont';
+import { PrichProstoia } from 'src/app/components/prichprostoia/PrichProstoia';
+import { VidPrichProstoia } from 'src/app/components/vidPrichProstoia/vid-prichprostoia/VidPrichProstoia';
 import { Detail } from 'src/app/components/details/detail/Detail';
 import { Vid } from 'src/app/components/vidRemonta/vid/Vid';
 import { environment } from 'src/environments/environment';
@@ -14,6 +16,7 @@ export class ServiceService {
     vid!:Vid[];
     remont!:Remont[];
     detail!:Detail[];
+    prichProstoia!:PrichProstoia[];
     constructor(private http:HttpClient) { }
 
     getRemont(){
@@ -63,5 +66,30 @@ export class ServiceService {
 
     getDetail(){
         return this.http.get<Detail>(environment.UrlDetail);
+    }
+
+    getPrichProstoia(){
+        return this.http.get<PrichProstoia>(environment.UrlPrichProstoia);
+    }
+
+    createPrichProstoia(prichina: String, groups: String){
+        return this.http.post<PrichProstoia>(environment.UrlPrichProstoia, {prichina,groups});
+    }
+
+    getPrichProstoiaId(id:number){
+        return this.http.get<PrichProstoia>(environment.UrlPrichProstoia+"/"+id);
+    }
+
+    updatePrichProstoia(prichina:PrichProstoia){
+        return this.http.put<PrichProstoia>(environment.UrlPrichProstoia+"/"+prichina.id,prichina);
+    }
+
+    deletePrichProstoia(prichina:PrichProstoia){
+        return this.http.delete<PrichProstoia>(environment.UrlPrichProstoia+"/"+prichina.id);
+        return this.http.get<PrichProstoia>(environment.UrlPrichProstoia);
+    }
+
+    getVidPrichProstoia(){
+        return this.http.get<VidPrichProstoia>(environment.UrlVidPrichProstoia);
     }
 }
