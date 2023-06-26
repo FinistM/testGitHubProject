@@ -94,7 +94,8 @@ button[name="add-click"] {
   color:#C0C0C0;
   padding: 10px 0px 10px 0px;
   font-size: 11pt;
-  border-bottom: 2px solid #C0C0C0
+  border-bottom: 2px solid #C0C0C0;
+  margin-bottom:20px;
 }
 
 .detalization:hover {

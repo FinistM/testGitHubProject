@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'wells-front';
 
-   constructor(private router:Router){this.router.navigate(["remontList"]);}
+   //constructor(private router:Router){this.router.navigate(["remontList"]);}
    //constructor(private router:Router){this.router.navigate(["spravList"]); }
-   //constructor(private router:Router){this.router.navigate(["prichProstList"]); }
+   constructor(private router:Router){this.router.navigate(["prichProstList"]); }
 
    ShowListRemontov(){
         this.router.navigate(["remontList"]);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/Service/service.service';
 import { Vid } from 'src/app/components/vidRemonta/vid/Vid';
@@ -9,13 +9,10 @@ import { Vid } from 'src/app/components/vidRemonta/vid/Vid';
     styleUrls: ['./add-vid.component.css']
 })
 
-export class AddVidComponent implements OnInit{
+export class AddVidComponent{
 
-    vid!: Vid;
     constructor(private router:Router, private service:ServiceService) {}
 
-    ngOnInit(){
-    }
 
     Add(name:String){
         if (name == "") alert("Проверьте заплнение полей!")

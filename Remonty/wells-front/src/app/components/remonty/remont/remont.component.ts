@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ServiceService } from 'src/app/Service/service.service';
 import { Router } from '@angular/router';
 import { Remont } from './Remont';
-import { Detail } from 'src/app/components/details/detail/Detail';
+import { Detail } from 'src/app/components/remonty/remont/Detail';
 import { Vid } from 'src/app/components/vidRemonta/vid/Vid';
 import { environment } from 'src/environments/environment';
 

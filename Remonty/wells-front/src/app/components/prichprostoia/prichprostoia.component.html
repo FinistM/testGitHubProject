@@ -1,112 +1,178 @@
+<div (click)="ShowAddPanel(0)" class="secondMenu">
+    Добавить
+</div>
 <title>Причины простоя бригад ремонтов</title>
-<div>
-  <h1 class="text-center" style="padding: 30px 0px 0px 0px">Причины простоя бригад ремонтов</h1>
-  <div class="container" style="padding: 10px 10px 0px 10px; width: 90%">
-    <div align="center" class="table_area" style="min-height:700px; width:100%">
+<div class="main-block">
+  <h1 class="text-center" style="padding: 30px 0px 0px 0px; font-size:2em">Причины простоя бригад ремонтов</h1>
+  <div class="container" style="padding: 10px 10px 20px 10px; width: 90%">
+    <div align="center" class="table_area" style="min-height:630px; width:100%; margin-bottom:30px;' ">
       <table style="width:100%; min-width:800px">
         <tr>
           <th style="width:300px">Причины простоя</th>
           <th>Детали</th>
         </tr>
         <tr>
-          <td style="height:600px; width:300px; text-align:left; border-right: 1px solid #CCCCCC;">
-            <tr *ngFor="let vid of vidPrichiny; let i = index">
-              <td style="text-align:left; width:290px">
-                <button (click)="showEdit(i)" style="width:30px;">{{open[i]}}</button><button (click)="GetGroup(vid)">{{AdaptVid(vid)}}</button>
-                <div *ngIf=isEdit[i] style="padding-bottom:10px; margin-left: 50px">
-                  <div *ngFor="let prich of prichina">
-                    <div *ngIf=Test(prich,vid)>
-                      <button (click)="GetPar(prich)" style="width: 230px; text-align:left; display: block">{{AdaptPrich(prich)}}</button>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </td>
-          <td style="min-height:600px">
-<!--            <div *ngIf="showPrichOrGroup">-->
-<!--              <tr>-->
-<!--                <td class="nameset">-->
-<!--                  Код группы:-->
-<!--                </td>-->
-<!--                <td class="countset">-->
-<!--                  {{parametr[2]}}-->
-<!--                </td>-->
-<!--              </tr>-->
-<!--              <tr>-->
-<!--                <td class="nameset">-->
-<!--                  Группа:-->
-<!--                </td>-->
-<!--                <td class="countset">-->
-<!--                  <input type="text" value={{parametr[3]}}>-->
-<!--                </td>-->
-<!--              </tr>-->
-<!--            </div>-->
-<!--            <div *ngIf="!showPrichOrGroup">-->
-<!--              <tr >-->
-<!--                <td class="nameset">-->
-<!--                  Код записи:-->
-<!--                </td>-->
-<!--                <td class="countset">-->
-<!--                  {{parametr[0]}}-->
-<!--                </td>-->
-<!--              </tr>-->
-<!--              <tr >-->
-<!--                <td class="nameset">-->
-<!--                  Группа:-->
-<!--                </td>-->
-<!--                <td class="countset">-->
-<!--                  {{parametr[3]}}-->
-<!--                </td>-->
-<!--              </tr>-->
-<!--              <tr>-->
-<!--                <td class="nameset">-->
-<!--                  Причина:-->
-<!--                </td>-->
-<!--                <td class="countset">-->
-<!--                  <input type="text" value={{parametr[1]}}>-->
-<!--                </td>-->
-<!--              </tr>-->
-<!--              <tr>-->
-<!--                <td class="nameset" colspan="2" style="text-align:left;padding-left:180px; padding-top:10px">-->
-<!--                  <button name="edit-click">Изменить</button>-->
-<!--                  <button name="del-click">Удалить</button>-->
-<!--                </td>-->
-<!--              </tr>-->
-<!--            </div>-->
+          <td style="height:560px; width:300px; text-align:left">
+            <div style="height:560px; overflow-y: auto; border-right: 1px solid #A0A0A0">
+              <table>
+                <tr *ngFor="let grouppa of grouppy; let i = index">
 
-            <div *ngIf="showPrichOrGroup"  style="margin-left:50px" class="form-group">
-              <label>Код группы: {{parametr[2]}}</label><br>
+                  <td  *ngIf="SearchGroup(grouppa)" style="text-align:left; width:290px">
+                    <button (click)="showGroup(i)" style="width:30px">{{groupOpen[i][1]}}</button>
+                    <button *ngIf="grouppa.arhivgrouppa" (click)="GetParametri(grouppa, 0)" class="listButton">{{grouppa.grouppa}}</button>
+                    <button *ngIf="!grouppa.arhivgrouppa" (click)="GetParametri(grouppa, 0)" class="listButton" style="color:lightgrey">{{grouppa.grouppa}}</button>
+                    <img *ngIf="grouppa.arhivgrouppa" (click)="ArhivingGroup(grouppa)" src="assets/images/eyeOpen.png" style="filter: brightness(0) invert(0.7); width:14px; height:12px">
+                    <img *ngIf="!grouppa.arhivgrouppa" (click)="ArhivingGroup(grouppa)" src="assets/images/eyeClose.png" style="filter: brightness(0) invert(0.7); width:14px; height:12px">
+
+
+                    <div *ngIf="groupOpen[i][0]" style="padding-bottom:10px; margin-left: 20px">
+                      <div *ngFor="let podgrouppa of podgrouppy; let j = index">
+                        <div *ngIf="ChosePodgroup(grouppa,podgrouppa) && SearchPodgroup(podgrouppa)">
+                          <button (click)="showPodgroup(j)" style="width:30px">{{podgroupOpen[j][1]}}</button>
+                          <button class="listButton" *ngIf="podgrouppa.arhivpodgrouppa" (click)="GetParametri(podgrouppa, 1)" style="max-width: 200px; ">{{podgrouppa.podgrouppa}}</button>
+                          <button class="listButton" *ngIf="!podgrouppa.arhivpodgrouppa" (click)="GetParametri(podgrouppa, 1)" style="color:lightgrey">{{podgrouppa.podgrouppa}}</button>
+                          <img *ngIf="podgrouppa.arhivpodgrouppa" (click)="ArhivingPodgroup(podgrouppa)" src="assets/images/eyeOpen.png" style="filter: brightness(0) invert(0.7); width:14px; height:12px">
+                          <img *ngIf="!podgrouppa.arhivpodgrouppa" (click)="ArhivingPodgroup(podgrouppa)" src="assets/images/eyeClose.png" style="filter: brightness(0) invert(0.7); width:14px; height:12px">
+
+
+                          <div *ngIf="podgroupOpen[j][0]" style="padding-bottom:10px; margin-left: 30px">
+                            <div *ngFor="let prichina of prichiny">
+                              <div *ngIf="ChosePrichina(podgrouppa,prichina) && SearchPrich(prichina)">
+                                <img *ngIf="prichina.arhivprichin" (click)="ArhivingPrichina(prichina)" src="assets/images/eyeOpen.png" style="filter: brightness(0) invert(0.7); width:14px; height:12px">
+                                <img *ngIf="!prichina.arhivprichin" (click)="ArhivingPrichina(prichina)" src="assets/images/eyeClose.png" style="filter: brightness(0) invert(0.7); width:14px; height:12px">
+                                <button class="listButton" *ngIf="prichina.arhivprichin" (click)="GetParametri(prichina, 2)" style="width: 200px; ">{{prichina.prichina}}</button>
+                                <button class="listButton" *ngIf="!prichina.arhivprichin" (click)="GetParametri(prichina, 2)" style="width: 200px; color:lightgrey">{{prichina.prichina}}</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div *ngFor="let prichina of prichiny;">
+                        <div *ngIf="ChosePrichinaInGroup(grouppa,prichina) && SearchPrich(prichina)"><!--&& SearchPrich(prichina)-->
+                          <img *ngIf="prichina.arhivprichin" (click)="ArhivingPrichina(prichina)" src="assets/images/eyeOpen.png" style="filter: brightness(0) invert(0.7); width:14px; height:12px; margin-left:8px">
+                          <img *ngIf="!prichina.arhivprichin" (click)="ArhivingPrichina(prichina)" src="assets/images/eyeClose.png" style="filter: brightness(0) invert(0.7); width:14px; height:12px; margin-left:8px">
+                          <button class="listButton" *ngIf="prichina.arhivprichin" (click)="GetParametri(prichina, 2)" style="width: 200px; margin-left:8px">{{prichina.prichina}}</button>
+                          <button class="listButton" *ngIf="!prichina.arhivprichin" (click)="GetParametri(prichina, 2)" style="width: 200px; color:lightgrey; margin-left:8px">{{prichina.prichina}}</button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </td>
+                </tr>
+              </table>
+            </div>
+          <table>
+            <td>
+              <input type="text" id="inputForSearching" (keyup)="CheckSearching(searching.value)" placeholder="Поиск..." class="form-control" style="width:264px; border-radius: 0.25rem 0rem 0rem 0.25rem; margin-bottom:0px; border-color: #A0A0A0;" #searching>
+            </td>
+            <td>
+              <button (click)="clearSearchInput()" class="clearSearchInput">X</button>
+            </td>
+          </table>
+          <td style="min-height:600px">
+            <div *ngIf="showHtmlGroup==0"  style="margin-left:50px" class="form-group">
               <label>Группа:</label>
-              <input class="form-control" type="text" value={{parametr[3]}}>
-              <button name="edit-click">Сохранить изменения</button>
-              <button name="del-click">Удалить</button>
+              <input id="changeGroupInput" class="form-control" type="text" value={{parametr[0]}} #changeGroup>
+              <button  name="edit-click" (click)="UpdateGroup(parametr[3], changeGroup.value)" style="margin-top:20px">Сохранить изменения</button><!--(click)="UpdateVidPrich(parametr[2], changeGroupInput.value)"-->
+              <button  name="add-del-click" (click)="DeleteGroupPrich(parametr[3])" style="margin-top:20px">Удалить</button>
             </div>
-            <div *ngIf="!showPrichOrGroup" style="margin-left:50px" class="form-group">
-              <label>Код записи: {{parametr[0]}}</label><br>
-              <label>Группа: {{parametr[3]}}</label><br>
-              <label>Причина:</label>
-              <input class="form-control" type="text" value={{parametr[1]}}>
-              <button name="edit-click">Сохранить изменения</button>
-              <button name="del-click">Удалить</button>
+            <div *ngIf="showHtmlGroup==1" style="margin-left:50px" class="form-group">
+              <label>Группа: </label><br>
+              <select class="form-control" #changeGroup>
+                <option selected style="display: none">{{parametr[1]}}</option>
+                <option *ngFor="let grouppa of grouppy">{{grouppa.grouppa}}</option>
+              </select><br>
+              <label>Подгруппа:</label>
+              <input class="form-control" type="text" value={{parametr[0]}} #changePodgroup>
+              <button name="edit-click" (click)="UpdatePodgroup(parametr[3], changePodgroup.value, changeGroup.value)" style="margin-top:20px">Сохранить изменения</button><!--(click)="UpdatePrich(parametr[0], changeNamePrichInput.value, changeGroupsSel.value)"-->
+              <button name="add-del-click" (click)="DeletePodgroupPrich(parametr[3])" style="margin-top:20px">Удалить</button>
             </div>
-            <div class="addForm" *ngIf="!openAddPan">
-              <h5 style="color:#999999">Добавление</h5><br>
-              <label>Группа:</label><br>
-              <select class="form-control">
-                <option selected style="display: none"></option>
-                <option *ngFor="let vid of vidyPrichProstoia">{{vid.groups}}</option>
+            <div *ngIf="showHtmlGroup==2" style="margin-left:50px" class="form-group">
+              <label>Группа: </label><br>
+              <select (change)="FillingMassivePodgroups(changeGroup.value)" class="form-control" #changeGroup>
+                <option  selected style="display: none">{{parametr[2]}}</option>
+                <option *ngFor="let grouppa of grouppy">{{grouppa.grouppa}}</option>
+              </select><br>
+              <label>Подгруппа (без значения - помещает в группу): </label><br>
+              <select id="podgroupSelector" class="form-control" #changePodgroup>
+                <option selected style="display: none">{{parametr[1]}}</option>
+                <option></option>
+                <option *ngFor="let podgrForSel of podgroupForSelect">{{podgrForSel}}</option>
               </select><br>
               <label>Причина:</label>
-              <input class="form-control" type="text" value={{parametr[1]}}>
-              <button name="del-click" style="margin:0">Добавить</button>
+              <input class="form-control" type="text" value={{parametr[0]}} #changePrich>
+              <button name="edit-click" (click)="UpdatePrich(parametr[3], changePrich.value, changePodgroup.value, changeGroup.value)" style="margin-top:20px">Сохранить изменения</button><!--(click)="UpdatePrich(parametr[0], changeNamePrichInput.value, changeGroupsSel.value)"-->
+              <button name="add-del-click" (click)="DeletePrich(parametr[3])" style="margin-top:20px">Удалить</button>
             </div>
-            <button (click)="ShowAddPanel()" name="show-panel-click">{{AddClickText}}</button>
-          </td>
+        </td>
         </tr>
       </table>
     </div>
   </div>
 </div>
-<!--*ngIf="String(Object.values(Object.values(prich)[2])[1])==vid"-->
-<!--*ngIf=Test()-->
+<div class="addForm" *ngIf="selectAdd>0">
+  <table style="width:100%">
+    <tr>
+      <td>
+        <button class="addPanelVariation" id="groupAdd" (click)="SelectForAdd(1)" style="background:white; color:#999999; border-right: 1px solid white">Добавление причины</button>
+      </td>
+      <td>
+        <button class="addPanelVariation" id="podgroupAdd" (click)="SelectForAdd(2)" style="background:#A0A0A0; color:white; border-right: 1px solid white">Добавление подгруппы</button><br>
+      </td>
+      <td>
+        <button class="addPanelVariation" id="prichinaAdd" (click)="SelectForAdd(3)" style="background:#A0A0A0; color:white">Добавление группы</button><br>
+      </td>
+    <tr>
+    <tr>
+      <td colspan="3">
+        <div *ngIf="selectAdd==1" style="padding:20px">
+          <label>Группа:</label><br>
+          <select (change)="FillingMassivePodgroupsForAddPrich(group.value)" class="form-control" #group>
+            <option selected style="display: none"></option>
+            <option *ngFor="let group of grouppy">{{group.grouppa}}</option>
+          </select><br>
+          <label>Подгруппа (без значения - помещает в группу):</label><br>
+          <select class="form-control" #podgroup>
+            <option selected></option>
+            <option *ngFor="let podgroup of podgroupForSelectInAdd">{{podgroup}}</option>
+          </select><br>
+          <label>Наименование причины:</label>
+          <input class="form-control" type="text" #prichina>
+          <button (click)="AddPrich(prichina.value, podgroup.value, group.value)" name="add-del-click" style="margin:0; margin-top:20px">Добавить</button>
+        </div>
+        <div *ngIf="selectAdd==2" style="padding:20px">
+          <label>Группа:</label><br>
+          <select class="form-control" #group>
+            <option selected style="display: none"></option>
+            <option *ngFor="let group of grouppy">{{group.grouppa}}</option>
+          </select><br>
+          <label>Подгруппа:</label>
+          <input class="form-control" type="text" #podgroup>
+          <button (click)="AddPodgroupOfPrich(podgroup.value, group.value)" name="add-del-click" style="margin:0; margin-top:20px">Добавить</button>
+        </div>
+        <div *ngIf="selectAdd==3" style="padding:20px">
+          <label>Наименование группы:</label>
+          <input class="form-control" type="text" #group>
+          <button (click)="AddGroupOfPrich(group.value)" name="add-del-click" style="margin:0; margin-top:20px">Добавить</button>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class="barrier" *ngIf="sure[0]==1"></div>
+</div>
+<div class="barrier" *ngIf="selectAdd>0"></div>
+<button *ngIf="selectAdd>0" (click)="ShowAddPanel(1)" name="show-panel-click">x</button>
+<div class="dialog" *ngIf="sure[0]==1">
+  <h6 style="color:white; background:#0275D8; height:30px; padding-left:20px; padding-top:5px">Подтверждение</h6>
+  <div>
+    <p style="text-align:center; margin-top:20px">Вы уверены, что хотите {{sure[2]}} информацию?</p>
+  </div>
+  <div style="text-align:center; margin-bottom:20px">
+    <button (click)="AreYouSure(1)" name="add-del-click" style="width:130px; cursor: pointer; margin-right:20px; margin-left:0px">Подтвердить</button>
+    <button (click)="AreYouSure(2)" name="edit-click" style="width:130px; cursor: pointer;">Отменить</button>
+  </div>
+</div>
+
+
+

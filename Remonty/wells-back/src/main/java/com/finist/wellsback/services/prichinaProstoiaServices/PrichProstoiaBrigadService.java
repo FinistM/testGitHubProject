@@ -1,12 +1,11 @@
-package com.finist.wellsback.services;
+package com.finist.wellsback.services.prichinaProstoiaServices;
 
-import com.finist.wellsback.models.PrichProstoiaBrigad;
-import com.finist.wellsback.repository.PrichProstoiaBrigadRepository;
+import com.finist.wellsback.models.prichinaProstoiaModels.PrichProstoiaBrigad;
+import com.finist.wellsback.repository.prichinaProstoiaRepositories.PrichProstoiaBrigadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 @Service
 public class PrichProstoiaBrigadService {
@@ -16,7 +15,7 @@ public class PrichProstoiaBrigadService {
     public PrichProstoiaBrigadService(PrichProstoiaBrigadRepository repository) { this.repository = repository; }
 
     public List<PrichProstoiaBrigad> getAllPrichProstoiaBrigady() {
-        return (List<PrichProstoiaBrigad>) repository.findAll();
+        return (List<PrichProstoiaBrigad>) repository.findByOrderByPrichinaAsc();
     }
 
     public PrichProstoiaBrigad getPrichProstoiaBrigadId(long id) { return repository.findById(id).get(); }

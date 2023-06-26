@@ -4,7 +4,7 @@ import { ServiceService } from 'src/app/Service/service.service';
 import { Router } from '@angular/router';
 import { Vid } from './Vid';
 import { environment } from 'src/environments/environment';
-import { Detail } from 'src/app/components/details/detail/Detail';
+import { Detail } from 'src/app/components/remonty/remont/Detail';
 
 
 @Component({

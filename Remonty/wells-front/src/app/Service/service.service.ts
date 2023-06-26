@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Remont } from 'src/app/components/remonty/remont/Remont';
 import { PrichProstoia } from 'src/app/components/prichprostoia/PrichProstoia';
-import { VidPrichProstoia } from 'src/app/components/vidPrichProstoia/vid-prichprostoia/VidPrichProstoia';
-import { Detail } from 'src/app/components/details/detail/Detail';
+import { GrouppaPrichProstoia } from 'src/app/components/prichprostoia/GrouppaPrichProstoia';
+import { PodgrouppaPrichProstoia } from 'src/app/components/prichprostoia/PodgrouppaPrichProstoia';
+import { Detail } from 'src/app/components/remonty/remont/Detail';
 import { Vid } from 'src/app/components/vidRemonta/vid/Vid';
 import { environment } from 'src/environments/environment';
 
@@ -17,6 +18,8 @@ export class ServiceService {
     remont!:Remont[];
     detail!:Detail[];
     prichProstoia!:PrichProstoia[];
+    grouppaPrichProstoia!:GrouppaPrichProstoia[];
+    podgrouppaPrichProstoia!:PodgrouppaPrichProstoia[];
     constructor(private http:HttpClient) { }
 
     getRemont(){
@@ -72,8 +75,9 @@ export class ServiceService {
         return this.http.get<PrichProstoia>(environment.UrlPrichProstoia);
     }
 
-    createPrichProstoia(prichina: String, groups: String){
-        return this.http.post<PrichProstoia>(environment.UrlPrichProstoia, {prichina,groups});
+    createPrichProstoia(prichina: String, arhivprichin: boolean, podgrouppa: Object, grouppa: Object){
+        //console.log("create createPrichProstoia, when: groups - " + groups + " prichina - " + prichina);
+        return this.http.post<PrichProstoia>(environment.UrlPrichProstoia, {prichina, arhivprichin, podgrouppa, grouppa});
     }
 
     getPrichProstoiaId(id:number){
@@ -89,7 +93,47 @@ export class ServiceService {
         return this.http.get<PrichProstoia>(environment.UrlPrichProstoia);
     }
 
-    getVidPrichProstoia(){
-        return this.http.get<VidPrichProstoia>(environment.UrlVidPrichProstoia);
+
+
+    getGrouppaPrichProstoia(){
+        return this.http.get<GrouppaPrichProstoia>(environment.UrlGrouppaPrichProstoia);
+    }
+
+    createGrouppaPrichProstoia(grouppa: String, arhivgrouppa: boolean){
+        return this.http.post<GrouppaPrichProstoia>(environment.UrlGrouppaPrichProstoia, {grouppa, arhivgrouppa});
+    }
+
+    getGrouppaPrichProstoiaId(id:number){
+        return this.http.get<GrouppaPrichProstoia>(environment.UrlGrouppaPrichProstoia+"/"+id);
+    }
+
+    updateGrouppaPrichProstoia(grouppa:GrouppaPrichProstoia){
+        return this.http.put<GrouppaPrichProstoia>(environment.UrlGrouppaPrichProstoia+"/"+grouppa.id,grouppa);
+    }
+
+    deleteGrouppaPrichProstoia(grouppa:GrouppaPrichProstoia){
+        return this.http.delete<GrouppaPrichProstoia>(environment.UrlGrouppaPrichProstoia+"/"+grouppa.id);
+        return this.http.get<GrouppaPrichProstoia>(environment.UrlGrouppaPrichProstoia);
+    }
+
+    getPodgrouppaPrichProstoia(){
+        return this.http.get<PodgrouppaPrichProstoia>(environment.UrlPodgrouppaPrichProstoia);
+    }
+
+    createPodgrouppaPrichProstoia(podgrouppa: String, arhivpodgrouppa: boolean, grouppa: Object){
+        return this.http.post<PodgrouppaPrichProstoia>(environment.UrlPodgrouppaPrichProstoia, {podgrouppa, arhivpodgrouppa, grouppa});
+    }
+
+    getPodgrouppaPrichProstoiaId(id:number){
+        return this.http.get<PodgrouppaPrichProstoia>(environment.UrlPodgrouppaPrichProstoia+"/"+id);
+    }
+
+    updatePodgrouppaPrichProstoia(podgrouppa:PodgrouppaPrichProstoia){
+        return this.http.put<PodgrouppaPrichProstoia>(environment.UrlPodgrouppaPrichProstoia+"/"+podgrouppa.id,podgrouppa);
+    }
+
+    deletePodgrouppaPrichProstoia(podgrouppa:PodgrouppaPrichProstoia){
+        return this.http.delete<PodgrouppaPrichProstoia>(environment.UrlPodgrouppaPrichProstoia+"/"+podgrouppa.id);
+        return this.http.get<PodgrouppaPrichProstoia>(environment.UrlPodgrouppaPrichProstoia);
     }
 }
