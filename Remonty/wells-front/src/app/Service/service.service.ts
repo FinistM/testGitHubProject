@@ -1,71 +1,139 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Remont } from 'src/app/components/remonty/remont/Remont';
+import { PrichProstoia } from 'src/app/components/prichprostoia/PrichProstoia';
+import { GrouppaPrichProstoia } from 'src/app/components/prichprostoia/GrouppaPrichProstoia';
+import { PodgrouppaPrichProstoia } from 'src/app/components/prichprostoia/PodgrouppaPrichProstoia';
+import { Detail } from 'src/app/components/remonty/remont/Detail';
 import { Vid } from 'src/app/components/vidRemonta/vid/Vid';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ServiceService {
 
-  vid!:Vid[];
-  remont!:Remont[];
-  constructor(private http:HttpClient) { }
+    vid!:Vid[];
+    remont!:Remont[];
+    detail!:Detail[];
+    prichProstoia!:PrichProstoia[];
+    grouppaPrichProstoia!:GrouppaPrichProstoia[];
+    podgrouppaPrichProstoia!:PodgrouppaPrichProstoia[];
+    constructor(private http:HttpClient) { }
 
-  Url='http://localhost:8081/remonty';
-  //Url='http://192.168.7.111:8081/remonty';
-  Url1='http://localhost:8081/vidy';
-  //Url1='http://192.168.7.111:8081/vidy';
+    getRemont(){
+        return this.http.get<Remont>(environment.UrlRemont);
+    }
 
-  getRemont(){
-    return this.http.get<Remont>(this.Url);
-    console.log("Status 2");
-  }
+    createRemont(skvajina: String, kyst: String, mestorojdenie: String, vid_remonta: Object, prichina: String,
+    date_start: String, time_start: String, date_end: String, time_end: String, brigada: String, primechanie: String){
+        console.log("your vid_remonta:" + Object.values(vid_remonta)[1]);
+        return this.http.post<Remont>(environment.UrlRemont, {skvajina, kyst, mestorojdenie, vid_remonta, prichina, date_start,
+        time_start, date_end, time_end, brigada, primechanie});
+    }
 
-  createRemont(skvajina: String, kyst: String, mestorojdenie: String, vid_remonta: String, prichina: String, start_date_year: String, start_date_month: String, start_date_day: String, start_time_hour: String, start_time_minute: String, end_date_year: String, end_date_month: String, end_date_day: String, end_time_hour: String, end_time_minute: String, brigada: String, primechanie: String){
-    return this.http.post<Remont>(this.Url, {skvajina, kyst, mestorojdenie, vid_remonta, prichina, start_date_year, start_date_month, start_date_day, start_time_hour, start_time_minute, end_date_year, end_date_month, end_date_day, end_time_hour, end_time_minute, brigada, primechanie});
-  }
+    getRemontId(id:number){
+        return this.http.get<Remont>(environment.UrlRemont+"/"+id);
+    }
 
-  /*createRemont(remont:Remont){
-    //alert("Информация добавлена" + Remont);
-    return this.http.post(this.Url, remont);
-  }*/
+    updateRemont(remont:Remont){
+        return this.http.put<Remont>(environment.UrlRemont+"/"+remont.id,remont);
+    }
 
-  getRemontId(id:number){
-    return this.http.get<Remont>(this.Url+"/"+id);
-    console.log("Status 3");
-  }
+    deleteRemont(remont:Remont){
+        return this.http.delete<Remont>(environment.UrlRemont+"/"+remont.id);
+        return this.http.get<Remont>(environment.UrlRemont);
+    }
 
-  updateRemont(remont:Remont){
-    return this.http.put<Remont>(this.Url+"/"+remont.id,remont);
-  }
+    getVid(){
+        return this.http.get<Vid>(environment.UrlVid);
+    }
 
-  deleteRemont(remont:Remont){
-    return this.http.delete<Remont>(this.Url+"/"+remont.id);
-    return this.http.get<Remont>(this.Url);
-  }
+    createVid(name: String){
+        return this.http.post<Vid>(environment.UrlVid, {name});
+    }
+
+    getVidId(id:number){
+        return this.http.get<Vid>(environment.UrlVid+"/"+id);
+    }
+
+    updateVid(vid:Vid){
+        return this.http.put<Vid>(environment.UrlVid+"/"+vid.id,vid);
+    }
+
+    deleteVid(vid:Vid){
+        return this.http.delete<Vid>(environment.UrlVid+"/"+vid.id);
+        return this.http.get<Vid>(environment.UrlVid);
+    }
+
+    getDetail(){
+        return this.http.get<Detail>(environment.UrlDetail);
+    }
+
+    getPrichProstoia(){
+        return this.http.get<PrichProstoia>(environment.UrlPrichProstoia);
+    }
+
+    createPrichProstoia(prichina: String, arhivprichin: boolean, podgrouppa: Object, grouppa: Object){
+        //console.log("create createPrichProstoia, when: groups - " + groups + " prichina - " + prichina);
+        return this.http.post<PrichProstoia>(environment.UrlPrichProstoia, {prichina, arhivprichin, podgrouppa, grouppa});
+    }
+
+    getPrichProstoiaId(id:number){
+        return this.http.get<PrichProstoia>(environment.UrlPrichProstoia+"/"+id);
+    }
+
+    updatePrichProstoia(prichina:PrichProstoia){
+        return this.http.put<PrichProstoia>(environment.UrlPrichProstoia+"/"+prichina.id,prichina);
+    }
+
+    deletePrichProstoia(prichina:PrichProstoia){
+        return this.http.delete<PrichProstoia>(environment.UrlPrichProstoia+"/"+prichina.id);
+        return this.http.get<PrichProstoia>(environment.UrlPrichProstoia);
+    }
 
 
 
-  getVid(){
-    return this.http.get<Vid>(this.Url1);
-  }
+    getGrouppaPrichProstoia(){
+        return this.http.get<GrouppaPrichProstoia>(environment.UrlGrouppaPrichProstoia);
+    }
 
-  createVid(name: String){
-    return this.http.post<Vid>(this.Url1, {name});
-  }
+    createGrouppaPrichProstoia(grouppa: String, arhivgrouppa: boolean){
+        return this.http.post<GrouppaPrichProstoia>(environment.UrlGrouppaPrichProstoia, {grouppa, arhivgrouppa});
+    }
 
-  getVidId(id:number){
-    return this.http.get<Vid>(this.Url1+"/"+id);
-  }
+    getGrouppaPrichProstoiaId(id:number){
+        return this.http.get<GrouppaPrichProstoia>(environment.UrlGrouppaPrichProstoia+"/"+id);
+    }
 
-  updateVid(vid:Vid){
-    return this.http.put<Vid>(this.Url1+"/"+vid.id,vid);
-  }
+    updateGrouppaPrichProstoia(grouppa:GrouppaPrichProstoia){
+        return this.http.put<GrouppaPrichProstoia>(environment.UrlGrouppaPrichProstoia+"/"+grouppa.id,grouppa);
+    }
 
-  deleteVid(vid:Vid){
-    return this.http.delete<Vid>(this.Url1+"/"+vid.id);
-    return this.http.get<Vid>(this.Url1);
-  }
+    deleteGrouppaPrichProstoia(grouppa:GrouppaPrichProstoia){
+        return this.http.delete<GrouppaPrichProstoia>(environment.UrlGrouppaPrichProstoia+"/"+grouppa.id);
+        return this.http.get<GrouppaPrichProstoia>(environment.UrlGrouppaPrichProstoia);
+    }
+
+    getPodgrouppaPrichProstoia(){
+        return this.http.get<PodgrouppaPrichProstoia>(environment.UrlPodgrouppaPrichProstoia);
+    }
+
+    createPodgrouppaPrichProstoia(podgrouppa: String, arhivpodgrouppa: boolean, grouppa: Object){
+        return this.http.post<PodgrouppaPrichProstoia>(environment.UrlPodgrouppaPrichProstoia, {podgrouppa, arhivpodgrouppa, grouppa});
+    }
+
+    getPodgrouppaPrichProstoiaId(id:number){
+        return this.http.get<PodgrouppaPrichProstoia>(environment.UrlPodgrouppaPrichProstoia+"/"+id);
+    }
+
+    updatePodgrouppaPrichProstoia(podgrouppa:PodgrouppaPrichProstoia){
+        return this.http.put<PodgrouppaPrichProstoia>(environment.UrlPodgrouppaPrichProstoia+"/"+podgrouppa.id,podgrouppa);
+    }
+
+    deletePodgrouppaPrichProstoia(podgrouppa:PodgrouppaPrichProstoia){
+        return this.http.delete<PodgrouppaPrichProstoia>(environment.UrlPodgrouppaPrichProstoia+"/"+podgrouppa.id);
+        return this.http.get<PodgrouppaPrichProstoia>(environment.UrlPodgrouppaPrichProstoia);
+    }
 }

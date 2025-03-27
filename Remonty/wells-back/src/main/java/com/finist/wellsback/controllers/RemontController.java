@@ -1,23 +1,21 @@
 package com.finist.wellsback.controllers;
 
 import com.finist.wellsback.models.Remont;
-import com.finist.wellsback.repository.RemontRepository;
 import com.finist.wellsback.services.RemontService;
+import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
-@RestController
-//это удобная аннотация, объединяющая @Controller и @ResponseBody , что устраняет необходимость аннотировать каждый метод обработки запросов класса контроллера аннотацией @ResponseBody
-@RequestMapping("/remonty")                                                                                              //аннотация @RequestMapping используется для сопоставления веб-запросов с методами Spring Controller.
-@CrossOrigin(origins = {"http://localhost:4201","http://localhost:4200"})                                              //определяет источники запросов(может быть как один, так и несколько)
+@RestController                                                                                                         //это удобная аннотация, объединяющая @Controller и @ResponseBody , что устраняет необходимость аннотировать каждый метод обработки запросов класса контроллера аннотацией @ResponseBody
+@RequestMapping("/remonty")                                                                                             //аннотация @RequestMapping используется для сопоставления веб-запросов с методами Spring Controller.
+@CrossOrigin(origins = {"http://localhost:4201","http://localhost:4200","http://localhost:4251"})                                               //определяет источники запросов(может быть как один, так и несколько)
 public class RemontController {
 
-    private final RemontService service;
-    private RemontRepository repository;//ссылка на сервис
+    private final RemontService service;//ссылка на сервис
 
     @Autowired
     //позволяет Spring разрешать и внедрять сторонние компоненты в наш компонент.
@@ -25,41 +23,50 @@ public class RemontController {
         this.service = service;
     }
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @GetMapping("/det")
+    public List<Map<String, Object>> getUsers() {
+        String sql = "WITH t as (SELECT r.*, v.name FROM remonty as r	FULL OUTER JOIN vidy as v ON r.vid_remonta = v.id) SELECT name, cast(concat_ws('',COUNT(id)) as varchar) as col, CASE WHEN COUNT(id)=0 THEN cast('...' as varchar) ELSE array_to_string(array_agg(concat_ws('  ',concat_ws(' - ', date_start, date_end),concat_ws('/', skvajina, kyst, mestorojdenie))),';     ' ) END detalization FROM t GROUP BY name";
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
+        for (Map<String, Object> row : rows) {
+            String column1Value = (String) row.get("name");
+            String column2Value = (String) row.get("col");
+            String column3Value = (String) row.get("detalization");
+        }
+        return rows;
+    }
+
     @GetMapping
     //получение списка
     public List<Remont> getAllRemonty() {
-        System.out.println("All data on site");
+        System.out.println("Main page downloaded\nTable of remont downloaded");
         return service.getAllRemonty();
     }
 
     @GetMapping("/{id}")                                                                                                //получение одной строки
     public Remont getRemontId(@PathVariable("id")Long id) {
+        System.out.println("Information about remond " + id + " sent");
         return service.getRemontId(id);
     }
 
     @PutMapping("/{id}")                                                                                                //получение одной строки
     public Remont editRemont(@RequestBody Remont r, @PathVariable("id")Long id) {
+        System.out.println("Information about remond " + id + " changed");
         r.setId(id);
-        System.out.println("Data for saving: " + r.getId() + " " + r.getSkvajina() + " " + r.getKyst() + " " + r.getMestorojdenie() + " " + r.getVid_remonta() + " " + r.getPrichina() + " " + r.getStart_date_day() + "-" + r.getStart_date_month() + "-" + r.getStart_date_year() + " " + r.getStart_time_hour() + ":" + r.getStart_time_minute()  + " " + r.getEnd_date_day() + "-" + r.getEnd_date_month() + "-" + r.getEnd_date_year() + " " + r.getEnd_time_hour() + ":" + r.getEnd_time_minute() + " " + r.getBrigada() + " " + r.getPrimechanie());
         return service.editRemont(r);
     }
 
-    @PostMapping                                                                                                      // обработчик PostMapping т.к. используется метод post (см. method="post" в blog-add)
+    @PostMapping
     public Remont remontPostAdd(@RequestBody Remont r) {
-        System.out.println("Информация получена" + r);
+        System.out.println("Information about remont added");
         return service.remontPostAdd(r);
     }
 
-//    @PostMapping                                                                                                              // обработчик PostMapping т.к. используется метод post (см. method="post" в blog-add)
-//    public String remontPostAdd(@RequestBody String skvajina, @RequestBody String kyst, @RequestBody String mestorojdenie, @RequestBody String vid_remonta, @RequestBody String prichina, @RequestBody String start_date_year, @RequestBody String start_date_month, @RequestBody String start_date_day, @RequestBody String start_time_hour, @RequestBody String start_time_minute, @RequestBody String end_date_year, @RequestBody String end_date_month, @RequestBody String end_date_day, @RequestBody String end_time_hour, @RequestBody String end_time_minute, @RequestBody String brigada, @RequestBody String primechanie, Model model) {         // получение данных из полей по именам атрибутов (см. файл blog-add)
-//        System.out.println("Data added");
-//        service.remontPostAdd(skvajina, kyst, mestorojdenie, vid_remonta, prichina, start_date_year, start_date_month, start_date_day, start_time_hour, start_time_minute, end_date_year, end_date_month, end_date_day, end_time_hour, end_time_minute, brigada, primechanie);
-//        return "";
-//    }
-
-    @DeleteMapping(path = {"/{id}"})                                                                                                              // обработчик PostMapping т.к. используется метод post (см. method="post" в blog-add)
-    public Remont delete(@PathVariable ("id") long id) {         // получение данных из полей по именам атрибутов (см. файл blog-add)
-        System.out.println("Data for delete: " + id);
+    @DeleteMapping(path = {"/{id}"})
+    public Remont delete(@PathVariable ("id") long id) {
+        System.out.println("Remont " + id + " deleted");
         return service.delete(id);
     }
 }

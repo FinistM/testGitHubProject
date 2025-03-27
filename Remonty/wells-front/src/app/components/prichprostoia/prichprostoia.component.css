@@ -1,0 +1,194 @@
+.table_area
+{
+  align: center;
+  min-height:700px;
+}
+
+.main-block{
+  background-color: white;
+  background-size: 60px 30px;
+  background-margin: 100px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8)), url(src\assets\images\Background5.png);
+}
+
+td{
+  text-align: left;
+  vertical-align: middle;
+  padding: 0px;
+  vertical-align: top;
+  //border: 4px double black;
+}
+
+th{
+  text-align: center;
+  vertical-align: middle;
+  padding: 0px;
+  height:60px;
+  font-family: sans-serif;
+  font-size:20px;
+  margin-bottom: 0.5rem;
+  font-family: inherit;
+  font-weight: 500;
+  //line-height: 1.1;
+  color: inherit;
+}
+
+p{ font-family: sans-serif; }
+
+button{
+  background:none;
+  border: 0px;
+  font-family: sans-serif;
+  color: black;
+}
+
+td .nameset{
+  text-align: right;
+  padding-right: 10px;
+  min-width: 180px;
+  padding-bottom: 2px;
+}
+
+td .countset, input{ width:100%; margin-bottom:10px}
+
+button[name="add-del-click"]:hover {
+  background: #76B3E8
+}
+
+button[name="edit-click"]:hover, .clearSearchInput:hover {
+  background: #B0B0B0;
+}
+
+button[name="edit-click"]:active, .clearSearchInput:active {
+  background: #C0C0C0;
+}
+
+button[name="add-del-click"]:active {
+  background: #9DD0FC
+}
+
+button[name="edit-click"], .clearSearchInput {
+  background: #A0A0A0;
+}
+
+button[name="add-del-click"] { margin-left:10px; background: #58A1E0 }
+
+button[name="edit-click"], button[name="add-del-click"] {
+  color: white;
+  border: 0px solid #C0C0C0;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  user-select: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+}
+
+button[name="show-panel-click"] {
+  background: #A0A0A0;
+  width: 30px;
+  height: 30px;
+  color: white;
+  border: 0px solid #C0C0C0;
+  line-height: 1.25;
+  border-radius: 0.25rem 0.25rem 0.25rem 0.25rem;
+  cursor: pointer;
+  position: fixed;
+  top: calc(50% - 220px);
+  left: calc(50% + 360px);
+  font-size: 1rem;
+  z-index: 3;
+}
+
+button[name="show-panel-click"]:hover {
+  background:  #B0B0B0;
+
+}
+
+.addForm{
+  width:700px;
+  position: fixed;
+  top: calc(50% - 220px);
+  left: calc(50% - 350px);
+  min-width:410px;
+  border: 2px solid #A0A0A0;
+  min-height: 440px;
+  border-radius: 0.25rem;
+  //padding:20px;
+  background:white;
+  z-index: 3;
+}
+
+.addPanelVariation{
+  width:100%;
+  text-align: left;
+  height: 60px;
+  padding-left: 20px;
+  font-weight: 550;
+  font-family: inherit;
+}
+
+.listButton{
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Roboto,Arial, sans-serif;
+  display: inline-block;
+  text-align:left;
+}
+
+.clearSearchInput{
+  height: 38px;
+  width:37px;
+  color:white;
+  border: 1px solid #A0A0A0;
+}
+
+.secondMenu{
+  //background:linear-gradient(to bottom, rgba(150, 150, 150, 1), rgba(150, 150, 150, 0.7), rgba(150, 150, 150, 0));
+  background:white;
+  height:50px;
+  padding-top:12px;
+  padding-left:30px;
+  cursor: pointer;
+  color:#AAAAAA
+}
+
+.secondMenu:hover{
+  background:#C0C0C0;
+  color:white
+}
+
+.addButton{
+  margin-top:12px;
+  margin-left:20px;
+  color:#C0C0C0;
+  cursor: pointer;
+}
+
+.addButton:hover{ color:white }
+
+.dialog{
+  position:fixed;
+  top: calc(50% - 80px);
+  left: calc(50% - 150px);
+  border: 2px solid #0275D8;
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  width:340px;
+  background:white;
+  z-index: 4;
+}
+
+.barrier{
+  position:fixed;
+  top: 67px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  background:rgba(100, 100, 100, .3);
+  z-index: 2;
+}

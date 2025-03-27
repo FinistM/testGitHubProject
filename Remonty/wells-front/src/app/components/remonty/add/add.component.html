@@ -1,101 +1,62 @@
 <title>Добавление</title>
 <div class="container cil-md-6" style="padding: 40px">
-  <div class="card" >
+  <div class="card">
     <div class="card-header">
       <h3>Добавление данных</h3>
     </div>
     <div class="card-body" style="padding: 10px">
       <form action="">
-        <div class="form-group" >
-          <label>Скважина:</label>
+        <div class="form-group">
+          <label>Скважина: *</label>
           <input type="text" class="form-control" #skvajina>
-          <label>Куст:</label>
+          <label>Куст: *</label>
           <input type="text" class="form-control" #kyst>
-          <label>Месторождение:</label>
+          <label>Месторождение: *</label>
           <input type="text" class="form-control" #mestorojdenie>
-          <label>Вид ремонта:</label>
+          <label>Вид ремонта: *</label>
           <select class="form-control" #vid_remonta>
-            <option selected>
+            <option selected style="display: none"></option>
             <option *ngFor="let vid of vidy">{{vid.name}}</option>
           </select>
-          <label>Причина:</label>
+          <label>Причина: *</label>
           <input type="text" class="form-control" #prichina>
-          <label>Дата и время начала ремонта</label><br>
+          <label>Дата и время начала ремонта *</label><br>
           <table>
             <td style="width: 65%">
-              <input type="text" placeholder="ДД" class="date-control" #start_date_day> /
-              <input type="text" placeholder="ММ" class="date-control" #start_date_month> /
-              <input type="text" placeholder="ГГГГ" class="date-control" #start_date_year>
+              <input type="text" maxlength="2" placeholder="ДД" class="date-control" #start_date_day> /
+              <input type="text" maxlength="2" placeholder="ММ" class="date-control" #start_date_month> /
+              <input type="text" maxlength="4" placeholder="ГГГГ" class="date-control" #start_date_year>
             </td>
             <td style="text-align:right">
-              <input type="text" placeholder="чч" class="time-control" #start_time_hour> :
-              <input type="text" placeholder="мм" class="time-control" #start_time_minute><br>
+              <input type="text" maxlength="2" placeholder="чч" class="time-control" #start_time_hour> :
+              <input type="text" maxlength="2" placeholder="мм" class="time-control" #start_time_minute><br>
             </td>
           </table>
           <label>Дата и время окончания ремонта</label><br>
           <table>
             <td style="width: 65%">
-              <input type="text" placeholder="ДД" class="date-control" #end_date_day> /
-              <input type="text" placeholder="ММ" class="date-control" #end_date_month> /
-              <input type="text" placeholder="ГГГГ" class="date-control" #end_date_year>
+              <input type="text" maxlength="2" placeholder="ДД" class="date-control" #end_date_day> /
+              <input type="text" maxlength="2" placeholder="ММ" class="date-control" #end_date_month> /
+              <input type="text" maxlength="4" placeholder="ГГГГ" class="date-control" #end_date_year>
             </td>
             <td style="text-align:right">
-              <input type="text" placeholder="чч" class="time-control" #end_time_hour> :
-              <input type="text" placeholder="мм" class="time-control" #end_time_minute><br>
+              <input type="text" maxlength="2" placeholder="чч" class="time-control" #end_time_hour> :
+              <input type="text" maxlength="2" placeholder="мм" class="time-control" #end_time_minute><br>
             </td>
           </table>
-          <label>Бригада:</label>
+          <label>Бригада: *</label>
           <input type="text" class="form-control" #brigada>
           <label>Примечание:</label>
           <textarea type="text" class="form-control" #primechanie></textarea>
         </div>
         <div class="form-group">
-          <button (click)="Add(skvajina.value, kyst.value, mestorojdenie.value, vid_remonta.value, prichina.value, start_date_year.value, start_date_month.value, start_date_day.value, start_time_hour.value, start_time_minute.value, end_date_year.value, end_date_month.value, end_date_day.value, end_time_hour.value, end_time_minute.value, brigada.value, primechanie.value)" class="btn btn-info" style="background: #0275d8; border: 0px">Добавить</button>
+          <p>* - обязательно для заполнения</p>
+          <button
+            (click)="Add(skvajina.value, kyst.value, mestorojdenie.value, vid_remonta.value, prichina.value, start_date_year.value, start_date_month.value, start_date_day.value, start_time_hour.value, start_time_minute.value, end_date_year.value, end_date_month.value, end_date_day.value, end_time_hour.value, end_time_minute.value, brigada.value, primechanie.value)"
+            class="btn btn-info" style="background: #0275d8; border: 0px">Добавить
+          </button>
         </div>
       </form>
     </div>
   </div>
 </div>
-
-<!--(click)="Add(skvajina.value,kyst.value,mestorojdenie.value,vid_remonta.value,prichina.value,start_date_year.value,start_date_month.value,start_date_day.value,start_time_hour.value,start_time_minute.value,end_date_year.value,end_date_month.value,end_date_day.value,end_time_hour.value,end_time_minute.value,brigada.value,primechanie.value)"-->
-<!--style="margin-top: -24px"-->
-
-<!--<div class="form-group" >-->
-<!--  <label >Скважина:</label>-->
-<!--  <input [(ngModel)]="remont.skvajina" type="text" class="form-control">-->
-<!--  <label >Куст:</label>-->
-<!--  <input [(ngModel)]="remont.kyst" type="text" class="form-control">-->
-<!--  <label >Месторождение:</label>-->
-<!--  <input [(ngModel)]="remont.mestorojdenie" type="text" class="form-control">-->
-<!--  <label >Вид ремонта:</label>-->
-<!--  <input [(ngModel)]="remont.vid_remonta" type="text" class="form-control">-->
-<!--  <label >Причина:</label>-->
-<!--  <input [(ngModel)]="remont.prichina" type="text" class="form-control">-->
-<!--  <label >Начало (год):</label>-->
-<!--  <input [(ngModel)]="remont.start_date_year" type="text" class="form-control">-->
-<!--  <label >Начало (месяц):</label>-->
-<!--  <input [(ngModel)]="remont.start_date_month" type="text" class="form-control">-->
-<!--  <label >Начало (день):</label>-->
-<!--  <input [(ngModel)]="remont.start_date_day" type="text" class="form-control">-->
-<!--  <label >Начало (часы):</label>-->
-<!--  <input [(ngModel)]="remont.start_time_hour" type="text" class="form-control">-->
-<!--  <label >Начало (минуты):</label>-->
-<!--  <input [(ngModel)]="remont.start_time_minute" type="text" class="form-control">-->
-<!--  <label >Окончание (год):</label>-->
-<!--  <input [(ngModel)]="remont.end_date_year" type="text" class="form-control">-->
-<!--  <label >Окончание (месяц):</label>-->
-<!--  <input [(ngModel)]="remont.end_date_month" type="text" class="form-control">-->
-<!--  <label >Окончание (день):</label>-->
-<!--  <input [(ngModel)]="remont.end_date_day" type="text" class="form-control">-->
-<!--  <label >Окончание (часы):</label>-->
-<!--  <input [(ngModel)]="remont.end_time_hour" type="text" class="form-control">-->
-<!--  <label >Окончание (минуты):</label>-->
-<!--  <input [(ngModel)]="remont.end_time_minute" type="text" class="form-control">-->
-<!--  <label >Бригада:</label>-->
-<!--  <input [(ngModel)]="remont.brigada" type="text" class="form-control">-->
-<!--  <label >Примечание:</label>-->
-<!--  <input [(ngModel)]="remont.primechanie" type="text" class="form-control">-->
-<!--</div>-->
-<!--<div class="form-group">-->
-<!--  <button (click)="Add(remont)" class="btn btn-info" style="background: #0275d8; border: 0px">Добавить</button>-->
-<!--</div>-->

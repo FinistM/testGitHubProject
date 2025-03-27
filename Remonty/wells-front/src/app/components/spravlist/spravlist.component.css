@@ -1,0 +1,43 @@
+.table_area
+{
+  align: center;
+  margin-bottom: 20px;
+  min-height:700px;
+}
+
+.spravochnik { background:#58a1e0; }
+
+.spravochnik2 { background:#CCCCCC; }
+
+.spravochnik, .spravochnik2
+{
+  width: 210px;
+  height: 210px;
+  margin: 10px 20px 30px 20px;
+  color: white;
+  border: 0px;
+  padding: 0rem 1rem;
+  border-radius: 1.25rem;
+  cursor: pointer;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
+.spravochnik:hover, .spravochnik2:hover {
+  width: 230px;
+  height: 230px;
+  margin: 0px 10px 20px 10px;
+  font-size: 14pt;
+  //zoom: 1.05;
+}
+
+.spravochnik:hover { background: #76b3e8; }
+
+.spravochnik2:hover {  background: #DDDDDD; }
+
+.mask{
+  width:130px;
+  height:130px;
+}
+
+

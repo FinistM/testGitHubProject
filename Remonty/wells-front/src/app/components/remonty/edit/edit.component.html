@@ -1,12 +1,12 @@
 <title>Редактирование</title>
 <div class="container cil-md-6" style="padding: 40px" xmlns="http://www.w3.org/1999/html">
-  <div class="card" >
+  <div class="card">
     <div class="card-header">
       <h3>Редактирование данных</h3>
     </div>
     <div style="padding: 10px; ">
       <form>
-        <div class="form-group" >
+        <div class="form-group">
           <label>Скважина:</label>
           <input [(ngModel)]="remont.skvajina" name="skvajina" type="text" class="form-control">
           <label>Куст:</label>
@@ -14,8 +14,8 @@
           <label>Месторождение:</label>
           <input [(ngModel)]="remont.mestorojdenie" name="mestorojdenie" type="text" class="form-control">
           <label>Вид ремонта:</label>
-          <select [(ngModel)]="remont.vid_remonta" name="vid_remonta" class="form-control">
-            <option disabled selected style="display: none">{{remont.vid_remonta}}</option>
+          <select class="form-control" #vid_remonta>
+            <option disabled selected style="display: none">{{vid_rem}}</option>
             <option *ngFor="let vid of vidy">{{vid.name}}</option>
           </select>
           <label>Причина:</label>
@@ -23,25 +23,34 @@
           <label>Дата и время начала ремонта</label><br>
           <table>
             <td style="width: 65%">
-              <input [(ngModel)]="remont.start_date_day" name="start_date_day" type="text" placeholder="ДД" class="date-control"> /
-              <input [(ngModel)]="remont.start_date_month" name="start_date_month" type="text" placeholder="ММ" class="date-control"> /
-              <input [(ngModel)]="remont.start_date_year" name="start_date_year" type="text" placeholder="ГГГГ" class="date-control">
+              <input [(ngModel)]="start_date_day" name="start_date_day" type="text" placeholder="ДД"
+                     class="date-control"> /
+              <input [(ngModel)]="start_date_month" name="start_date_month" type="text" placeholder="ММ"
+                     class="date-control"> /
+              <input [(ngModel)]="start_date_year" name="start_date_year" type="text" placeholder="ГГГГ"
+                     class="date-control">
             </td>
             <td style="text-align:right">
-              <input [(ngModel)]="remont.start_time_hour" name="start_time_hour" type="text" placeholder="чч" class="time-control"> :
-              <input [(ngModel)]="remont.start_time_minute" name="start_time_minute" type="text" placeholder="мм" class="time-control"><br>
+              <input [(ngModel)]="start_time_hour" name="start_time_hour" type="text" placeholder="чч"
+                     class="time-control"> :
+              <input [(ngModel)]="start_time_minute" name="start_time_minute" type="text" placeholder="мм"
+                     class="time-control"><br>
             </td>
           </table>
           <label>Дата и время окончания ремонта</label><br>
           <table>
             <td style="width: 65%">
-              <input [(ngModel)]="remont.end_date_day" name="end_date_day" type="text" placeholder="ДД" class="date-control"> /
-              <input [(ngModel)]="remont.end_date_month" name="end_date_month" type="text" placeholder="ММ" class="date-control"> /
-              <input [(ngModel)]="remont.end_date_year" name="end_date_year" type="text" placeholder="ГГГГ" class="date-control">
+              <input [(ngModel)]="end_date_day" name="end_date_day" type="text" placeholder="ДД" class="date-control"> /
+              <input [(ngModel)]="end_date_month" name="end_date_month" type="text" placeholder="ММ"
+                     class="date-control"> /
+              <input [(ngModel)]="end_date_year" name="end_date_year" type="text" placeholder="ГГГГ"
+                     class="date-control">
             </td>
             <td style="text-align:right">
-              <input [(ngModel)]="remont.end_time_hour" name="end_time_hour" type="text" placeholder="чч" class="time-control"> :
-              <input [(ngModel)]="remont.end_time_minute" name="end_time_minute" type="text" placeholder="мм" class="time-control"><br>
+              <input [(ngModel)]="end_time_hour" name="end_time_hour" type="text" placeholder="чч" class="time-control">
+              :
+              <input [(ngModel)]="end_time_minute" name="end_time_minute" type="text" placeholder="мм"
+                     class="time-control"><br>
             </td>
           </table>
           <label>Бригада:</label>
@@ -50,7 +59,12 @@
           <textarea [(ngModel)]="remont.primechanie" name="primechanie" type="text" class="form-control"></textarea>
         </div>
         <div class="form-group">
-          <button (click)="Actualisation(remont)" class="btn btn-info" style="background: #0275d8; border: 0px">Сохранить</button>
+          <button (click)="Actualisation(remont, vid_remonta.value,
+          start_date_day, start_date_month, start_date_year,
+          start_time_hour, start_time_minute,
+          end_date_day, end_date_month, end_date_year,
+          end_time_hour, end_time_minute)" class="btn btn-info" style="background: #0275d8; border: 0px">Сохранить
+          </button>
         </div>
       </form>
     </div>
@@ -58,3 +72,4 @@
 </div>
 
 <!--(click)="Actualisation(remont)"-->
+

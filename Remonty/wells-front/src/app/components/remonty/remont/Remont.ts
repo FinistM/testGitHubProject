@@ -3,189 +3,125 @@ export class Remont {
     private _skvajina: string;
     private _kyst: string;
     private _mestorojdenie: string;
-    private _vid_remonta: string;
+    private _vid_remonta: Object;
     private _prichina: string;
-    private _start_date_year: string;
-    private _start_date_month: string;
-    private _start_date_day: string;
-    private _start_time_hour: string;
-    private _start_time_minute: string;
-    private _end_date_year: string;
-    private _end_date_month: string;
-    private _end_date_day: string;
-    private _end_time_hour: string;
-    private _end_time_minute: string;
+    private _date_start: string;
+    private _time_start: string;
+    private _date_end: string;
+    private _time_end: string;
     private _brigada: string;
     private _primechanie: string;
 
 
-    constructor(id: bigint, skvajina: string, kyst: string, mestorojdenie: string, vid_remonta: string, prichina: string, start_date_year: string, start_date_month: string, start_date_day: string, start_time_hour: string, start_time_minute: string, end_date_year: string, end_date_month: string, end_date_day: string, end_time_hour: string, end_time_minute: string, brigada: string, primechanie: string){
+    constructor(id: bigint, skvajina: string, kyst: string, mestorojdenie: string, vid_remonta: Object, prichina: string,
+    date_start: string, time_start: string, date_end: string, time_end: string, brigada: string, primechanie: string){
         this._id = id;
         this._skvajina = skvajina;
         this._kyst = kyst;
         this._mestorojdenie = mestorojdenie;
         this._vid_remonta = vid_remonta;
         this._prichina = prichina;
-        this._start_date_year = start_date_year;
-        this._start_date_month = start_date_month;
-        this._start_date_day = start_date_day;
-        this._start_time_hour = start_time_hour;
-        this._start_time_minute = start_time_minute;
-        this._end_date_year = end_date_year;
-        this._end_date_month = end_date_month;
-        this._end_date_day = end_date_day;
-        this._end_time_hour = end_time_hour;
-        this._end_time_minute = end_time_minute;
+        this._date_start = date_start;
+        this._time_start = time_start;
+        this._date_end = date_end;
+        this._time_end = time_end;
         this._brigada = brigada;
         this._primechanie = primechanie;
-        console.log("Status 5");
     }
 
     get id(): bigint {
-      return this._id;
-      console.log("Status 6");
+        return this._id;
     }
 
     set id(value: bigint){
-      this._id = value;
-      console.log("Status 7");
+        this._id = value;
     }
 
     get skvajina(): string {
-      return this._skvajina;
-      console.log("Status 8");
+        return this._skvajina;
     }
 
     set skvajina(value: string){
-      this._skvajina = value;
-      console.log("Status 9");
+        this._skvajina = value;
     }
 
     get kyst(): string {
-      return this._kyst;
+        return this._kyst;
     }
 
     set kyst(value: string){
-      this._kyst = value;
+        this._kyst = value;
     }
 
     get mestorojdenie(): string {
-      return this._mestorojdenie;
+        return this._mestorojdenie;
     }
 
     set mestorojdenie(value: string){
       this._mestorojdenie = value;
     }
 
-    get vid_remonta(): string {
-      return this._vid_remonta;
+    get vid_remonta(): Object {
+        return this._vid_remonta;
     }
 
-    set vid_remonta(value: string){
-      this._vid_remonta = value;
+    set vid_remonta(value: Object){
+        this._vid_remonta = value;
     }
 
     get prichina(): string {
-      return this._prichina;
+        return this._prichina;
     }
 
     set prichina(value: string){
       this._prichina = value;
     }
 
-    get start_date_year(): string {
-      return this._start_date_year;
+    get date_start(): string {
+        return this._date_start;
     }
 
-    set start_date_year(value: string){
-      this._start_date_year = value;
+    set date_start(value: string){
+      this._date_start = value;
     }
 
-    get start_date_month(): string {
-      return this._start_date_month;
+    get time_start(): string {
+        return this._time_start;
     }
 
-    set start_date_month(value: string){
-      this._start_date_month = value;
+    set time_start(value: string){
+        this._time_start = value;
     }
 
-    get start_date_day(): string {
-      return this._start_date_day;
+    get date_end(): string {
+        return this._date_end;
     }
 
-    set start_date_day(value: string){
-      this._start_date_day = value;
+    set date_end(value: string){
+        this._date_end = value;
     }
 
-    get start_time_hour(): string {
-      return this._start_time_hour;
+    get time_end(): string {
+      return this._time_end;
     }
 
-    set start_time_hour(value: string){
-      this._start_time_hour = value;
-    }
-
-    get start_time_minute(): string {
-      return this._start_time_minute;
-    }
-
-    set start_time_minute(value: string){
-      this._start_time_minute = value;
-    }
-
-    get end_date_year(): string {
-      return this._end_date_year;
-    }
-
-    set end_date_year(value: string){
-      this._end_date_year = value;
-    }
-
-    get end_date_month(): string {
-      return this._end_date_month;
-    }
-
-    set end_date_month(value: string){
-      this._end_date_month = value;
-    }
-
-    get end_date_day(): string {
-      return this._end_date_day;
-    }
-
-    set end_date_day(value: string){
-      this._end_date_day = value;
-    }
-
-    get end_time_hour(): string {
-      return this._end_time_hour;
-    }
-
-    set end_time_hour(value: string){
-      this._end_time_hour = value;
-    }
-
-    get end_time_minute(): string {
-      return this._end_time_minute;
-    }
-
-    set end_time_minute(value: string){
-      this._end_time_minute = value;
+    set time_end(value: string){
+        this._time_end = value;
     }
 
     get brigada(): string {
-      return this._brigada;
+        return this._brigada;
     }
 
     set brigada(value: string){
-      this._brigada = value;
+        this._brigada = value;
     }
 
     get primechanie(): string {
-      return this._primechanie;
+        return this._primechanie;
     }
 
     set primechanie(value: string){
-      this._primechanie = value;
+        this._primechanie = value;
     }
 }

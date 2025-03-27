@@ -4,9 +4,9 @@ import { Vid } from 'src/app/components/vidRemonta/vid/Vid';
 import { ServiceService } from 'src/app/Service/service.service';
 
 @Component({
-  selector: 'app-edit-vid',
-  templateUrl: './edit-vid.component.html',
-  styleUrls: ['./edit-vid.component.css']
+    selector: 'app-edit-vid',
+    templateUrl: './edit-vid.component.html',
+    styleUrls: ['./edit-vid.component.css']
 })
 
 export class EditVidComponent implements OnInit{
@@ -15,24 +15,26 @@ export class EditVidComponent implements OnInit{
     constructor(private router:Router, private service:ServiceService) { }
 
     ngOnInit(){
-      this.Editor();
+        this.Editor();
     }
 
     Editor(){
-      let id=localStorage.getItem("id");
-      console.log("From Editor in EditComp "+id);
-      this.service.getVidId(parseInt(id!,10))
-      .subscribe(data =>{
-      this.vid=data;
-      })
+        let id=localStorage.getItem("id");
+        console.log("From Editor in EditComp "+id);
+        this.service.getVidId(parseInt(id!,10))
+        .subscribe(data =>{
+            this.vid=data;
+        })
     }
 
     Actualisation(vid:Vid){
-      this.service.updateVid(vid)
-      .subscribe(data =>{
-        this.vid=data;
-        alert("Изменения сохранены");
-        this.router.navigate(["vidList"]);
-      })
+        console.log("vid " + vid.name);
+        if (vid.name == "") alert("Проверьте заплнение полей!")
+        else this.service.updateVid(vid)
+        .subscribe(data =>{
+            this.vid=data;
+            alert("Изменения сохранены");
+            this.router.navigate(["vidList"]);
+        })
     }
 }
